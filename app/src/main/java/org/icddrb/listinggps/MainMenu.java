@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -19,6 +20,7 @@ public class MainMenu extends Activity {
     static String USERID = "";
     Button cmdDataUpload;
     Button cmdDataSync;
+    Button cmdGPSListing;
     Connection C;
     Global g;
 
@@ -97,6 +99,15 @@ public class MainMenu extends Activity {
                         }
                     });
                     adb.show();
+                }
+            });
+
+            cmdGPSListing =(Button)findViewById(R.id.cmdGPSListing);
+            cmdGPSListing.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent=new Intent(getApplicationContext(),GPSBari_list.class);
+                    startActivity(intent);
                 }
             });
 

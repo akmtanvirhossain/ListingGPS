@@ -69,6 +69,20 @@
                 android:textColor="#FFFFFF"
                 android:textSize="20sp" />
 
+            <Button
+                android:id="@+id/cmdGPSListing"
+                style="@style/menuButtonStyle"
+                android:layout_width="fill_parent"
+                android:layout_marginBottom="5sp"
+                android:layout_marginLeft="20sp"
+                android:layout_marginRight="20sp"
+                android:background="@drawable/button_style_gray"
+                android:gravity="center|center_vertical"
+                android:text="GPS Listing "
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                />
+
 
             <Button
                 android:id="@+id/cmdDataSync"
@@ -168,6 +182,8 @@
                 android:textColor="#FFFFFF"
                 android:textSize="20sp"
                 android:visibility="gone" />
+
+
 
     </LinearLayout>
 </ScrollView>
