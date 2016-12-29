@@ -1,4 +1,4 @@
-package org.icddrb.standard;
+package org.icddrb.listinggps;
 
 import android.app.NotificationManager;
 import android.app.Service;

@@ -5,7 +5,8 @@
     android:background="#F3F3F3"
     android:isScrollContainer="true"
     android:orientation="vertical"
-    android:overScrollMode="always"
+    android:overScrollMode="always" android:paddingLeft="0sp"
+    android:paddingRight="0sp"
     android:scrollbarAlwaysDrawVerticalTrack="true"
     android:scrollbarStyle="outsideInset"
     android:scrollbars="vertical">

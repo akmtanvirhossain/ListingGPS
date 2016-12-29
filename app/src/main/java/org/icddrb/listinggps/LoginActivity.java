@@ -1,4 +1,4 @@
-package org.icddrb.standard;
+package org.icddrb.listinggps;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -70,7 +70,7 @@ public class LoginActivity extends Activity {
                 {
                     //Call Setting Form
                     finish();
-                    Intent f1 = new Intent(getApplicationContext(), SettingFormNew.class);
+                    Intent f1 = new Intent(getApplicationContext(), SettingForm.class);
                     startActivity(f1);
                     return;
                 }
@@ -92,7 +92,7 @@ public class LoginActivity extends Activity {
             {
                 //Reqular data sync
                 C.Sync_DatabaseStructure(UniqueID);
-                C.Sync_Download("DatabasTab",UniqueID,"");
+                //C.Sync_Download("DatabasTab",UniqueID,"");
             }
             //**************************************************************************************
 

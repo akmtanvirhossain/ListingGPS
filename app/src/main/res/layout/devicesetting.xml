@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="fill_parent" android:layout_height="fill_parent" android:overScrollMode="always" android:isScrollContainer="true" android:scrollbarAlwaysDrawVerticalTrack="true"         android:scrollbarStyle="outsideInset"         android:scrollbars="vertical"><LinearLayout android:orientation="vertical" android:layout_width="fill_parent"    android:layout_marginLeft="10sp" android:layout_marginRight="10sp"    android:layout_height="wrap_content" android:scrollbars="vertical">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="fill_parent" android:layout_height="fill_parent" android:overScrollMode="always" android:isScrollContainer="true" android:scrollbarAlwaysDrawVerticalTrack="true"         android:scrollbarStyle="outsideInset"         android:scrollbars="vertical"><LinearLayout android:orientation="vertical" android:layout_width="fill_parent"    android:layout_marginLeft="0sp" android:layout_marginRight="0sp"    android:layout_height="wrap_content" android:scrollbars="vertical">
     <include
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"

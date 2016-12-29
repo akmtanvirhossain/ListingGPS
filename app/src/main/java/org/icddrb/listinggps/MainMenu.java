@@ -1,25 +1,18 @@
-package org.icddrb.standard;
+package org.icddrb.listinggps;
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.os.Environment;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 import Common.Connection;
-import Common.FileUpload;
 import Common.Global;
-import Common.ProjectSetting;
-import Utility.CompressZip;
-import Utility.MySharedPreferences;
 
 public class MainMenu extends Activity {
 
