@@ -22,13 +22,20 @@ import android.view.View;
 import android.view.MotionEvent;
 import android.view.ViewGroup;
 import android.view.LayoutInflater;
+import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.SimpleAdapter;
 import android.widget.BaseAdapter;
+import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.Toast;
+
 import Common.*;
 
 public class GPSBari_list extends Activity {
@@ -63,6 +70,16 @@ public class GPSBari_list extends Activity {
     Button btnAdd;
     Button btnRefresh;
 
+    //************added by sakib***************
+    TextView tvUnion,tvVillage;
+    Spinner spnUnion,spnVillage;
+
+    RadioGroup rdogrpBLD;
+
+    RadioButton rdoBari,rdoLandmark,rdoPara;
+
+    //************added by sakib***************
+
     String StartTime;
     static String PROJID = "";
     static String VCODE = "";
@@ -76,8 +93,8 @@ public class GPSBari_list extends Activity {
             C = new Connection(this);
             g = Global.getInstance();
             StartTime = g.CurrentTime24();
-
             TableName = "GPSBari";
+
             lblHeading = (TextView)findViewById(R.id.lblHeading);
             lblHeading.setOnTouchListener(new View.OnTouchListener() {
                 @Override
@@ -132,12 +149,100 @@ public class GPSBari_list extends Activity {
                     IDbundle.putString("ProjId", "");
                     IDbundle.putString("VCode", "");
                     IDbundle.putString("BariNo", "");
-                    Intent intent = new Intent(getApplicationContext(), GPSBari.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    intent.putExtras(IDbundle);
-                    getApplicationContext().startActivity(intent);
+
+
+                    String[] d_rdogrpElectricity = new String[]{"1", "2", "3"};
+
+                    int rb = rdogrpBLD.getCheckedRadioButtonId();
+
+                    Intent intent = null;
+
+                    switch(rb)
+                    {
+                        case R.id.rdoBari:
+                            intent = new Intent(getApplicationContext(), GPSBari.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            intent.putExtras(IDbundle);
+                            break;
+                        case R.id.rdoLandmark:
+                            Toast.makeText(GPSBari_list.this, "Landmark is Selected", Toast.LENGTH_SHORT).show();
+//                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                            intent.putExtras(IDbundle);
+                            break;
+                        case R.id.rdoPara:
+                            Toast.makeText(GPSBari_list.this, "Para is Selected", Toast.LENGTH_SHORT).show();
+//                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                            intent.putExtras(IDbundle);
+                            break;
+                        default:
+                            Toast.makeText(GPSBari_list.this, "Nothing is Selected", Toast.LENGTH_SHORT).show();
+                            break;
+                    }
+
+                    if(rb!= -1)
+                    {
+                        getApplicationContext().startActivity(intent);
+                    }
+
 
                 }});
+
+
+            //**************************added by sakib***************************
+
+
+            tvUnion= (TextView) findViewById(R.id.tvUnion);
+            tvVillage= (TextView) findViewById(R.id.tvVillage);
+
+            spnUnion= (Spinner) findViewById(R.id.spnUnion);
+            spnVillage= (Spinner) findViewById(R.id.spnVillage);
+
+            rdogrpBLD= (RadioGroup) findViewById(R.id.rdogrpBLD);
+
+            rdoBari= (RadioButton) findViewById(R.id.rdoBari);
+            rdoLandmark= (RadioButton) findViewById(R.id.rdoLandmark);
+            rdoPara= (RadioButton) findViewById(R.id.rdoPara);
+
+            spnUnion.setAdapter( (C.getArrayAdapter("Select '' Union Select distinct UnName||'-'||UnName from Village union Select '99-Others'")));
+            spnUnion.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                    if (spnUnion.getSelectedItem().toString().length() == 0) return;
+                    spnVillage.setAdapter(C.getArrayAdapter("Select '  ' Union  Select distinct VName from Village where UnName='"+ Connection.SelectedSpinnerValue(spnUnion.getSelectedItem().toString(),"-")+"'  union Select '999-Others'"));
+                    //spnVillage.setAdapter(C.getArrayAdapter("Select VName from Village where UnName='"+ Connection.SelectedSpinnerValue(spnUnion.getSelectedItem().toString(),"-")+"'  union Select '999-Others'"));
+                    if(Connection.SelectedSpinnerValue(spnUnion.getSelectedItem().toString(),"-").equals("999"))
+                        spnVillage.setSelection(Global.SpinnerItemPositionAnyLength(spnVillage,"999"));
+                    else
+                        spnVillage.setSelection(Global.SpinnerItemPositionAnyLength(spnVillage,""));
+
+
+                }
+                @Override
+                public void onNothingSelected(AdapterView<?> parentView) {
+                }
+            });
+
+            rdogrpBLD.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(RadioGroup group, int checkedId) {
+                    switch(checkedId)
+                    {
+                        case R.id.rdoBari:
+
+                            btnAdd.setText("New "+rdoBari.getText());
+                            break;
+                        case R.id.rdoLandmark:
+                            btnAdd.setText("New "+rdoLandmark.getText());
+                            break;
+                        case R.id.rdoPara:
+                            btnAdd.setText("New "+rdoPara.getText());
+                            break;
+                    }
+                }
+            });
+
+
+            //**************************added by sakib***************************
 
 
             DataSearch(PROJID, VCODE, BARINO);

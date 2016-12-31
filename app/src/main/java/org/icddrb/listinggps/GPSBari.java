@@ -250,6 +250,11 @@ public class GPSBari extends Activity {
             VlblHCLoction = (TextView) findViewById(R.id.VlblHCLoction);
             txtHCLoction = (EditText) findViewById(R.id.txtHCLoction);
 
+            //**************************added by sakib***************************
+
+            txtBariNo.setText(BariNoSerial());
+
+            //**************************added by sakib***************************
 
             //Hide all skip variables
 
@@ -264,6 +269,12 @@ public class GPSBari extends Activity {
             Connection.MessageBox(GPSBari.this, e.getMessage());
             return;
         }
+    }
+
+    private String BariNoSerial()
+    {
+        String SL = C.ReturnSingleValue("Select (ifnull(max(cast(SerialNo as int)),0)+1)SL from GPSBari"); //where ParticipantID='"+ ParticipantID +"'");
+        return SL;
     }
 
     private void DataSave() {
