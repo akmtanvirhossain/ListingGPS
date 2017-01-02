@@ -50,7 +50,9 @@
 
         <activity android:name=".GPSBari" />
         <activity android:name=".GPSBari_list" />
-        <activity android:name=".GPSLandmark"></activity>
+        <activity android:name=".GPSLandmark" />
+
+        <activity android:name=".GPSVDoctor"></activity>
     </application>
 
 </manifest>

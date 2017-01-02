@@ -2,7 +2,7 @@ package org.icddrb.listinggps;
 
 
 //Android Manifest Code
-//<activity android:name=".GPSBari" android:label="GPSBari" />
+//<activity android:name=".GPSVDoctor" android:label="GPSVDoctor" />
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -56,11 +56,10 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
-import android.widget.Toast;
 
 import Common.*;
 
-public class GPSBari extends Activity {
+public class GPSVDoctor extends Activity {
     boolean networkAvailable = false;
     Location currentLocation;
     double currentLatitude, currentLongitude;
@@ -104,18 +103,22 @@ public class GPSBari extends Activity {
     View lineParaName;
     TextView VlblParaName;
     EditText txtParaName;
-    LinearLayout secBariNo;
-    View lineBariNo;
-    TextView VlblBariNo;
-    EditText txtBariNo;
-    LinearLayout secBariName;
-    View lineBariName;
-    TextView VlblBariName;
-    EditText txtBariName;
-    LinearLayout secTotalHH;
-    View lineTotalHH;
-    TextView VlblTotalHH;
-    EditText txtTotalHH;
+    LinearLayout secVDNo;
+    View lineVDNo;
+    TextView VlblVDNo;
+    EditText txtVDNo;
+    LinearLayout secVDName;
+    View lineVDName;
+    TextView VlblVDName;
+    EditText txtVDName;
+    LinearLayout secVDType;
+    View lineVDType;
+    TextView VlblVDType;
+    EditText txtVDType;
+    LinearLayout secPharName;
+    View linePharName;
+    TextView VlblPharName;
+    EditText txtPharName;
     LinearLayout seclblLatitude;
     View linelblLatitude;
     LinearLayout seclatDeg;
@@ -144,39 +147,30 @@ public class GPSBari extends Activity {
     View linelonSec;
     TextView VlbllonSec;
     EditText txtlonSec;
-    LinearLayout secHCLoction;
-    View lineHCLoction;
-    TextView VlblHCLoction;
-    EditText txtHCLoction;
 
     String StartTime;
     Bundle IDbundle;
     static String PROJID = "";
     static String VCODE = "";
-    static String BARINO = "";
+    static String VDNO = "";
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         try {
-            setContentView(R.layout.gpsbari);
+            setContentView(R.layout.gpsvdoctor);
             C = new Connection(this);
             g = Global.getInstance();
             StartTime = g.CurrentTime24();
             IDbundle = getIntent().getExtras();
             PROJID = IDbundle.getString("ProjId");
             VCODE = IDbundle.getString("VCode");
-            BARINO = IDbundle.getString("BariNo");
+            VDNO = IDbundle.getString("VDNo");
 
-            TableName = "GPSBari";
+            TableName = "GPSVDoctor";
 
-
-
-            if(BARINO.equals(""))
-            {
-                BARINO=BariNoSerial();
+            if (VDNO.equals("")) {
+                VDNO = VDNoSerial();
             }
-
-
 
             //turnGPSOn();
 
@@ -189,7 +183,7 @@ public class GPSBari extends Activity {
             ImageButton cmdBack = (ImageButton) findViewById(R.id.cmdBack);
             cmdBack.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    AlertDialog.Builder adb = new AlertDialog.Builder(GPSBari.this);
+                    AlertDialog.Builder adb = new AlertDialog.Builder(GPSVDoctor.this);
                     adb.setTitle("Close");
                     adb.setMessage("Do you want to close this form[Yes/No]?");
                     adb.setNegativeButton("No", null);
@@ -215,18 +209,22 @@ public class GPSBari extends Activity {
             lineParaName = (View) findViewById(R.id.lineParaName);
             VlblParaName = (TextView) findViewById(R.id.VlblParaName);
             txtParaName = (EditText) findViewById(R.id.txtParaName);
-            secBariNo = (LinearLayout) findViewById(R.id.secBariNo);
-            lineBariNo = (View) findViewById(R.id.lineBariNo);
-            VlblBariNo = (TextView) findViewById(R.id.VlblBariNo);
-            txtBariNo = (EditText) findViewById(R.id.txtBariNo);
-            secBariName = (LinearLayout) findViewById(R.id.secBariName);
-            lineBariName = (View) findViewById(R.id.lineBariName);
-            VlblBariName = (TextView) findViewById(R.id.VlblBariName);
-            txtBariName = (EditText) findViewById(R.id.txtBariName);
-            secTotalHH = (LinearLayout) findViewById(R.id.secTotalHH);
-            lineTotalHH = (View) findViewById(R.id.lineTotalHH);
-            VlblTotalHH = (TextView) findViewById(R.id.VlblTotalHH);
-            txtTotalHH = (EditText) findViewById(R.id.txtTotalHH);
+            secVDNo = (LinearLayout) findViewById(R.id.secVDNo);
+            lineVDNo = (View) findViewById(R.id.lineVDNo);
+            VlblVDNo = (TextView) findViewById(R.id.VlblVDNo);
+            txtVDNo = (EditText) findViewById(R.id.txtVDNo);
+            secVDName = (LinearLayout) findViewById(R.id.secVDName);
+            lineVDName = (View) findViewById(R.id.lineVDName);
+            VlblVDName = (TextView) findViewById(R.id.VlblVDName);
+            txtVDName = (EditText) findViewById(R.id.txtVDName);
+            secVDType = (LinearLayout) findViewById(R.id.secVDType);
+            lineVDType = (View) findViewById(R.id.lineVDType);
+            VlblVDType = (TextView) findViewById(R.id.VlblVDType);
+            txtVDType = (EditText) findViewById(R.id.txtVDType);
+            secPharName = (LinearLayout) findViewById(R.id.secPharName);
+            linePharName = (View) findViewById(R.id.linePharName);
+            VlblPharName = (TextView) findViewById(R.id.VlblPharName);
+            txtPharName = (EditText) findViewById(R.id.txtPharName);
             seclblLatitude = (LinearLayout) findViewById(R.id.seclblLatitude);
             linelblLatitude = (View) findViewById(R.id.linelblLatitude);
             seclatDeg = (LinearLayout) findViewById(R.id.seclatDeg);
@@ -255,25 +253,21 @@ public class GPSBari extends Activity {
             linelonSec = (View) findViewById(R.id.linelonSec);
             VlbllonSec = (TextView) findViewById(R.id.VlbllonSec);
             txtlonSec = (EditText) findViewById(R.id.txtlonSec);
-            secHCLoction = (LinearLayout) findViewById(R.id.secHCLoction);
-            lineHCLoction = (View) findViewById(R.id.lineHCLoction);
-            VlblHCLoction = (TextView) findViewById(R.id.VlblHCLoction);
-            txtHCLoction = (EditText) findViewById(R.id.txtHCLoction);
+
 
             //**************************added by sakib***************************
 
-            txtBariNo.setText(BARINO);
-            if(!PROJID.equals(""))
-            {
+            txtVDNo.setText(VDNO);
+            if (!PROJID.equals("")) {
                 txtProjId.setText(PROJID);
             }
 
-            if(!VCODE.equals(""))
-            {
+            if (!VCODE.equals("")) {
                 txtVCode.setText(VCODE);
             }
 
             //**************************added by sakib***************************
+
 
             //Hide all skip variables
 
@@ -284,24 +278,21 @@ public class GPSBari extends Activity {
                     DataSave();
                 }
             });
-            DataSearch(PROJID,VCODE,BARINO);
         } catch (Exception e) {
-            Connection.MessageBox(GPSBari.this, e.getMessage());
+            Connection.MessageBox(GPSVDoctor.this, e.getMessage());
             return;
         }
     }
 
-    private String BariNoSerial()
-    {
-        String SL = C.ReturnSingleValue("Select (ifnull(max(cast(BariNo as int)),0)+1)SL from GPSBari"); //where ParticipantID='"+ ParticipantID +"'");
+    private String VDNoSerial() {
+        String SL = C.ReturnSingleValue("Select (ifnull(max(cast(VDNo as int)),0)+1)SL from GPSVDoctor"); //where ParticipantID='"+ ParticipantID +"'");
 
-        int length=SL.length();
+        int length = SL.length();
         String s = "";
-        for(int i=0;i<4-length;i++)
-        {
-           s+="0";
+        for (int i = 0; i < 4 - length; i++) {
+            s += "0";
         }
-        SL=s+SL;
+        SL = s + SL;
 
 
         return SL;
@@ -313,80 +304,80 @@ public class GPSBari extends Activity {
             String DV = "";
 
             if (txtProjId.getText().toString().length() == 0 & secProjId.isShown()) {
-                Connection.MessageBox(GPSBari.this, "Required field: Project ID.");
+                Connection.MessageBox(GPSVDoctor.this, "Required field: Project Id.");
                 txtProjId.requestFocus();
                 return;
             } else if (Integer.valueOf(txtProjId.getText().toString().length() == 0 ? "1" : txtProjId.getText().toString()) < 1 || Integer.valueOf(txtProjId.getText().toString().length() == 0 ? "99999" : txtProjId.getText().toString()) > 99999) {
-                Connection.MessageBox(GPSBari.this, "Value should be between 1 and 99999(Project ID).");
+                Connection.MessageBox(GPSVDoctor.this, "Value should be between 1 and 99999(Project Id).");
                 txtProjId.requestFocus();
                 return;
             } else if (txtVCode.getText().toString().length() == 0 & secVCode.isShown()) {
-                Connection.MessageBox(GPSBari.this, "Required field: Village Code.");
+                Connection.MessageBox(GPSVDoctor.this, "Required field: Village Code.");
                 txtVCode.requestFocus();
                 return;
             } else if (txtParaName.getText().toString().length() == 0 & secParaName.isShown()) {
-                Connection.MessageBox(GPSBari.this, "Required field: Para Name.");
+                Connection.MessageBox(GPSVDoctor.this, "Required field: Para Name.");
                 txtParaName.requestFocus();
                 return;
-            } else if (txtBariNo.getText().toString().length() == 0 & secBariNo.isShown()) {
-                Connection.MessageBox(GPSBari.this, "Required field: Bari No.");
-                txtBariNo.requestFocus();
+            } else if (txtVDNo.getText().toString().length() == 0 & secVDNo.isShown()) {
+                Connection.MessageBox(GPSVDoctor.this, "Required field: Village Doctor No.");
+                txtVDNo.requestFocus();
                 return;
-            } else if (txtBariName.getText().toString().length() == 0 & secBariName.isShown()) {
-                Connection.MessageBox(GPSBari.this, "Required field: Bari Name.");
-                txtBariName.requestFocus();
+            } else if (txtVDName.getText().toString().length() == 0 & secVDName.isShown()) {
+                Connection.MessageBox(GPSVDoctor.this, "Required field: Village Doctor Name.");
+                txtVDName.requestFocus();
                 return;
-            } else if (txtTotalHH.getText().toString().length() == 0 & secTotalHH.isShown()) {
-                Connection.MessageBox(GPSBari.this, "Required field: Total HH.");
-                txtTotalHH.requestFocus();
+            } else if (txtVDType.getText().toString().length() == 0 & secVDType.isShown()) {
+                Connection.MessageBox(GPSVDoctor.this, "Required field: Type Of Village Doctor.");
+                txtVDType.requestFocus();
+                return;
+            } else if (txtPharName.getText().toString().length() == 0 & secPharName.isShown()) {
+                Connection.MessageBox(GPSVDoctor.this, "Required field: Pharmacy Name.");
+                txtPharName.requestFocus();
                 return;
             } else if (txtlatDeg.getText().toString().length() == 0 & seclatDeg.isShown()) {
-                Connection.MessageBox(GPSBari.this, "Required field: Degree.");
+                Connection.MessageBox(GPSVDoctor.this, "Required field: Degree.");
                 txtlatDeg.requestFocus();
                 return;
             } else if (txtlatMin.getText().toString().length() == 0 & seclatMin.isShown()) {
-                Connection.MessageBox(GPSBari.this, "Required field: Minuet.");
+                Connection.MessageBox(GPSVDoctor.this, "Required field: Minuet.");
                 txtlatMin.requestFocus();
                 return;
             } else if (txtlatSec.getText().toString().length() == 0 & seclatSec.isShown()) {
-                Connection.MessageBox(GPSBari.this, "Required field: Second.");
+                Connection.MessageBox(GPSVDoctor.this, "Required field: Second.");
                 txtlatSec.requestFocus();
                 return;
             } else if (txtlonDeg.getText().toString().length() == 0 & seclonDeg.isShown()) {
-                Connection.MessageBox(GPSBari.this, "Required field: Degree.");
+                Connection.MessageBox(GPSVDoctor.this, "Required field: Degree.");
                 txtlonDeg.requestFocus();
                 return;
             } else if (txtlonMin.getText().toString().length() == 0 & seclonMin.isShown()) {
-                Connection.MessageBox(GPSBari.this, "Required field: Minuet.");
+                Connection.MessageBox(GPSVDoctor.this, "Required field: Minuet.");
                 txtlonMin.requestFocus();
                 return;
             } else if (txtlonSec.getText().toString().length() == 0 & seclonSec.isShown()) {
-                Connection.MessageBox(GPSBari.this, "Required field: Second.");
+                Connection.MessageBox(GPSVDoctor.this, "Required field: Second.");
                 txtlonSec.requestFocus();
-                return;
-            } else if (txtHCLoction.getText().toString().length() == 0 & secHCLoction.isShown()) {
-                Connection.MessageBox(GPSBari.this, "Required field: Health Care Location.");
-                txtHCLoction.requestFocus();
                 return;
             }
 
             String SQL = "";
             RadioButton rb;
 
-            GPSBari_DataModel objSave = new GPSBari_DataModel();
+            GPSVDoctor_DataModel objSave = new GPSVDoctor_DataModel();
             objSave.setProjId(txtProjId.getText().toString());
             objSave.setVCode(txtVCode.getText().toString());
             objSave.setParaName(txtParaName.getText().toString());
-            objSave.setBariNo(txtBariNo.getText().toString());
-            objSave.setBariName(txtBariName.getText().toString());
-            objSave.setTotalHH(txtTotalHH.getText().toString());
+            objSave.setVDNo(txtVDNo.getText().toString());
+            objSave.setVDName(txtVDName.getText().toString());
+            objSave.setVDType(txtVDType.getText().toString());
+            objSave.setPharName(txtPharName.getText().toString());
             objSave.setlatDeg(txtlatDeg.getText().toString());
             objSave.setlatMin(txtlatMin.getText().toString());
             objSave.setlatSec(txtlatSec.getText().toString());
             objSave.setlonDeg(txtlonDeg.getText().toString());
             objSave.setlonMin(txtlonMin.getText().toString());
             objSave.setlonSec(txtlonSec.getText().toString());
-            objSave.setHCLoction(txtHCLoction.getText().toString());
             objSave.setEnDt(Global.DateTimeNowYMDHMS());
             objSave.setStartTime(StartTime);
             objSave.setEndTime(g.CurrentTime24());
@@ -397,42 +388,41 @@ public class GPSBari extends Activity {
 
             String status = objSave.SaveUpdateData(this);
             if (status.length() == 0) {
-                Connection.MessageBox(GPSBari.this, "Saved Successfully");
+                Connection.MessageBox(GPSVDoctor.this, "Saved Successfully");
             } else {
-                Connection.MessageBox(GPSBari.this, status);
+                Connection.MessageBox(GPSVDoctor.this, status);
                 return;
             }
         } catch (Exception e) {
-            Connection.MessageBox(GPSBari.this, e.getMessage());
+            Connection.MessageBox(GPSVDoctor.this, e.getMessage());
             return;
         }
     }
 
-    private void DataSearch(String ProjId, String VCode, String BariNo) {
+    private void DataSearch(String ProjId, String VCode, String VDNo) {
         try {
 
             RadioButton rb;
-            GPSBari_DataModel d = new GPSBari_DataModel();
-           String SQL = "Select * from " + TableName + "  Where ProjId='" + ProjId + "' and VCode='" + VCode + "' and BariNo='" + BariNo + "'";
-
-            List<GPSBari_DataModel> data = d.SelectAll(this, SQL);
-            for (GPSBari_DataModel item : data) {
+            GPSVDoctor_DataModel d = new GPSVDoctor_DataModel();
+            String SQL = "Select * from " + TableName + "  Where ProjId='" + ProjId + "' and VCode='" + VCode + "' and VDNo='" + VDNo + "'";
+            List<GPSVDoctor_DataModel> data = d.SelectAll(this, SQL);
+            for (GPSVDoctor_DataModel item : data) {
                 txtProjId.setText(item.getProjId());
                 txtVCode.setText(item.getVCode());
                 txtParaName.setText(item.getParaName());
-                txtBariNo.setText(item.getBariNo());
-                txtBariName.setText(item.getBariName());
-                txtTotalHH.setText(item.getTotalHH());
+                txtVDNo.setText(item.getVDNo());
+                txtVDName.setText(item.getVDName());
+                txtVDType.setText(item.getVDType());
+                txtPharName.setText(item.getPharName());
                 txtlatDeg.setText(item.getlatDeg());
                 txtlatMin.setText(item.getlatMin());
                 txtlatSec.setText(item.getlatSec());
                 txtlonDeg.setText(item.getlonDeg());
                 txtlonMin.setText(item.getlonMin());
                 txtlonSec.setText(item.getlonSec());
-                txtHCLoction.setText(item.getHCLoction());
             }
         } catch (Exception e) {
-            Connection.MessageBox(GPSBari.this, e.getMessage());
+            Connection.MessageBox(GPSVDoctor.this, e.getMessage());
             return;
         }
     }

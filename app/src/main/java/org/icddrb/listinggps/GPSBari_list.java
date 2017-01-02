@@ -81,7 +81,7 @@ public class GPSBari_list extends Activity {
     //************added by sakib***************
 
     String StartTime;
-    static String PROJID = "";
+    static String PROJID = "0001";
     static String VCODE = "";
     static String BARINO = "";
 
@@ -159,10 +159,13 @@ public class GPSBari_list extends Activity {
             btnAdd.setOnClickListener(new View.OnClickListener() {
 
                 public void onClick(View view) {
+
+                    VCODE = C.ReturnSingleValue("Select VCode from Village where VName='"+spnVillage.getSelectedItem()+"'"); //where ParticipantID='"+ ParticipantID +"'");
                     Bundle IDbundle = new Bundle();
-                    IDbundle.putString("ProjId", "");
-                    IDbundle.putString("VCode", "");
-                    IDbundle.putString("BariNo", "");
+                    IDbundle.putString("ProjId", PROJID);
+                    IDbundle.putString("VCode", VCODE);
+
+
 
 
                     String[] d_rdogrpElectricity = new String[]{"1", "2", "3"};
@@ -174,20 +177,24 @@ public class GPSBari_list extends Activity {
                     switch(rb)
                     {
                         case R.id.rdoBari:
-
-
-                                intent = new Intent(getApplicationContext(), GPSBari.class);
-                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                intent.putExtras(IDbundle);
+                            intent = new Intent(getApplicationContext(), GPSBari.class);
+                            IDbundle.putString("BariNo", "");
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            intent.putExtras(IDbundle);
 
                             break;
                         case R.id.rdoLandmark:
-                            Toast.makeText(GPSBari_list.this, "Landmark is Selected", Toast.LENGTH_SHORT).show();
-//                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            intent = new Intent(getApplicationContext(), GPSLandmark.class);
+                            IDbundle.putString("LMNo", "");
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            intent.putExtras(IDbundle);
 //                            intent.putExtras(IDbundle);
                             break;
                         case R.id.rdoPara:
-                            Toast.makeText(GPSBari_list.this, "Para is Selected", Toast.LENGTH_SHORT).show();
+                            intent = new Intent(getApplicationContext(), GPSVDoctor.class);
+                            IDbundle.putString("VDNo", "");
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            intent.putExtras(IDbundle);
 //                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 //                            intent.putExtras(IDbundle);
                             break;
