@@ -56,6 +56,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
+import android.widget.Toast;
 
 import Common.*;
 
@@ -168,6 +169,13 @@ public class GPSBari extends Activity {
 
             TableName = "GPSBari";
 
+
+
+            if(BARINO.equals(""))
+            {
+                BARINO=BariNoSerial();
+            }
+
             //turnGPSOn();
 
             //GPS Location
@@ -252,7 +260,7 @@ public class GPSBari extends Activity {
 
             //**************************added by sakib***************************
 
-            txtBariNo.setText(BariNoSerial());
+            txtBariNo.setText(BARINO);
 
             //**************************added by sakib***************************
 
@@ -265,6 +273,7 @@ public class GPSBari extends Activity {
                     DataSave();
                 }
             });
+            DataSearch(PROJID,VCODE,BARINO);
         } catch (Exception e) {
             Connection.MessageBox(GPSBari.this, e.getMessage());
             return;
@@ -273,7 +282,17 @@ public class GPSBari extends Activity {
 
     private String BariNoSerial()
     {
-        String SL = C.ReturnSingleValue("Select (ifnull(max(cast(SerialNo as int)),0)+1)SL from GPSBari"); //where ParticipantID='"+ ParticipantID +"'");
+        String SL = C.ReturnSingleValue("Select (ifnull(max(cast(BariNo as int)),0)+1)SL from GPSBari"); //where ParticipantID='"+ ParticipantID +"'");
+
+        int length=SL.length();
+        String s = "";
+        for(int i=0;i<4-length;i++)
+        {
+           s+="0";
+        }
+        SL=s+SL;
+
+
         return SL;
     }
 
@@ -383,7 +402,8 @@ public class GPSBari extends Activity {
 
             RadioButton rb;
             GPSBari_DataModel d = new GPSBari_DataModel();
-            String SQL = "Select * from " + TableName + "  Where ProjId='" + ProjId + "' and VCode='" + VCode + "' and BariNo='" + BariNo + "'";
+           String SQL = "Select * from " + TableName + "  Where ProjId='" + ProjId + "' and VCode='" + VCode + "' and BariNo='" + BariNo + "'";
+
             List<GPSBari_DataModel> data = d.SelectAll(this, SQL);
             for (GPSBari_DataModel item : data) {
                 txtProjId.setText(item.getProjId());

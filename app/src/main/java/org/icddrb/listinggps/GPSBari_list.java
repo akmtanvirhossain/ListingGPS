@@ -95,6 +95,20 @@ public class GPSBari_list extends Activity {
             StartTime = g.CurrentTime24();
             TableName = "GPSBari";
 
+            //**************************added by sakib***************************
+            tvUnion= (TextView) findViewById(R.id.tvUnion);
+            tvVillage= (TextView) findViewById(R.id.tvVillage);
+
+            spnUnion= (Spinner) findViewById(R.id.spnUnion);
+            spnVillage= (Spinner) findViewById(R.id.spnVillage);
+
+            rdogrpBLD= (RadioGroup) findViewById(R.id.rdogrpBLD);
+
+            rdoBari= (RadioButton) findViewById(R.id.rdoBari);
+            rdoLandmark= (RadioButton) findViewById(R.id.rdoLandmark);
+            rdoPara= (RadioButton) findViewById(R.id.rdoPara);
+            //**************************added by sakib***************************
+
             lblHeading = (TextView)findViewById(R.id.lblHeading);
             lblHeading.setOnTouchListener(new View.OnTouchListener() {
                 @Override
@@ -160,9 +174,12 @@ public class GPSBari_list extends Activity {
                     switch(rb)
                     {
                         case R.id.rdoBari:
-                            intent = new Intent(getApplicationContext(), GPSBari.class);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                            intent.putExtras(IDbundle);
+
+
+                                intent = new Intent(getApplicationContext(), GPSBari.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                intent.putExtras(IDbundle);
+
                             break;
                         case R.id.rdoLandmark:
                             Toast.makeText(GPSBari_list.this, "Landmark is Selected", Toast.LENGTH_SHORT).show();
@@ -191,17 +208,6 @@ public class GPSBari_list extends Activity {
             //**************************added by sakib***************************
 
 
-            tvUnion= (TextView) findViewById(R.id.tvUnion);
-            tvVillage= (TextView) findViewById(R.id.tvVillage);
-
-            spnUnion= (Spinner) findViewById(R.id.spnUnion);
-            spnVillage= (Spinner) findViewById(R.id.spnVillage);
-
-            rdogrpBLD= (RadioGroup) findViewById(R.id.rdogrpBLD);
-
-            rdoBari= (RadioButton) findViewById(R.id.rdoBari);
-            rdoLandmark= (RadioButton) findViewById(R.id.rdoLandmark);
-            rdoPara= (RadioButton) findViewById(R.id.rdoPara);
 
             spnUnion.setAdapter( (C.getArrayAdapter("Select '' Union Select distinct UnName||'-'||UnName from Village union Select '99-Others'")));
             spnUnion.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -261,7 +267,8 @@ public class GPSBari_list extends Activity {
         {
 
             GPSBari_DataModel d = new GPSBari_DataModel();
-            String SQL = "Select * from "+ TableName +"  Where ProjId='"+ ProjId +"' and VCode='"+ VCode +"' and BariNo='"+ BariNo +"'";
+            //String SQL = "Select * from "+ TableName +"  Where ProjId='"+ ProjId +"' and VCode='"+ VCode +"' and BariNo='"+ BariNo +"'";
+            String SQL = "Select * from "+ TableName;
             List<GPSBari_DataModel> data = d.SelectAll(this, SQL);
             dataList.clear();
 
@@ -315,34 +322,34 @@ public class GPSBari_list extends Activity {
             }
             LinearLayout   secListRow = (LinearLayout)convertView.findViewById(R.id.secListRow);
 
-            final TextView ProjId = (TextView)convertView.findViewById(R.id.ProjId);
-            final TextView VCode = (TextView)convertView.findViewById(R.id.VCode);
+//            final TextView ProjId = (TextView)convertView.findViewById(R.id.ProjId);
+//            final TextView VCode = (TextView)convertView.findViewById(R.id.VCode);
             final TextView ParaName = (TextView)convertView.findViewById(R.id.ParaName);
             final TextView BariNo = (TextView)convertView.findViewById(R.id.BariNo);
             final TextView BariName = (TextView)convertView.findViewById(R.id.BariName);
-            final TextView TotalHH = (TextView)convertView.findViewById(R.id.TotalHH);
-            final TextView latDeg = (TextView)convertView.findViewById(R.id.latDeg);
-            final TextView latMin = (TextView)convertView.findViewById(R.id.latMin);
-            final TextView latSec = (TextView)convertView.findViewById(R.id.latSec);
-            final TextView lonDeg = (TextView)convertView.findViewById(R.id.lonDeg);
-            final TextView lonMin = (TextView)convertView.findViewById(R.id.lonMin);
-            final TextView lonSec = (TextView)convertView.findViewById(R.id.lonSec);
-            final TextView HCLoction = (TextView)convertView.findViewById(R.id.HCLoction);
+//            final TextView TotalHH = (TextView)convertView.findViewById(R.id.TotalHH);
+//            final TextView latDeg = (TextView)convertView.findViewById(R.id.latDeg);
+//            final TextView latMin = (TextView)convertView.findViewById(R.id.latMin);
+//            final TextView latSec = (TextView)convertView.findViewById(R.id.latSec);
+//            final TextView lonDeg = (TextView)convertView.findViewById(R.id.lonDeg);
+//            final TextView lonMin = (TextView)convertView.findViewById(R.id.lonMin);
+//            final TextView lonSec = (TextView)convertView.findViewById(R.id.lonSec);
+//            final TextView HCLoction = (TextView)convertView.findViewById(R.id.HCLoction);
 
             final HashMap<String, String> o = (HashMap<String, String>) dataAdap.getItem(position);
-            ProjId.setText(o.get("ProjId"));
-            VCode.setText(o.get("VCode"));
+//            ProjId.setText(o.get("ProjId"));
+//            VCode.setText(o.get("VCode"));
             ParaName.setText(o.get("ParaName"));
             BariNo.setText(o.get("BariNo"));
             BariName.setText(o.get("BariName"));
-            TotalHH.setText(o.get("TotalHH"));
-            latDeg.setText(o.get("latDeg"));
-            latMin.setText(o.get("latMin"));
-            latSec.setText(o.get("latSec"));
-            lonDeg.setText(o.get("lonDeg"));
-            lonMin.setText(o.get("lonMin"));
-            lonSec.setText(o.get("lonSec"));
-            HCLoction.setText(o.get("HCLoction"));
+//            TotalHH.setText(o.get("TotalHH"));
+//            latDeg.setText(o.get("latDeg"));
+//            latMin.setText(o.get("latMin"));
+//            latSec.setText(o.get("latSec"));
+//            lonDeg.setText(o.get("lonDeg"));
+//            lonMin.setText(o.get("lonMin"));
+//            lonSec.setText(o.get("lonSec"));
+//            HCLoction.setText(o.get("HCLoction"));
 
             secListRow.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {

@@ -49,7 +49,8 @@
         <service android:name=".DataSyncService" />
 
         <activity android:name=".GPSBari" />
-        <activity android:name=".GPSBari_list"></activity>
+        <activity android:name=".GPSBari_list" />
+        <activity android:name=".GPSLandmark"></activity>
     </application>
 
 </manifest>
