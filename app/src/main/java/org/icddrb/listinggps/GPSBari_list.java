@@ -206,7 +206,7 @@ public class GPSBari_list extends Activity {
                             IDbundle.putString("LMNo", "");
                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             intent.putExtras(IDbundle);
-                            LoadLandmark(PROJID,VCODE,"");
+
 //                            intent.putExtras(IDbundle);
                             break;
                         case R.id.rdoPara:
@@ -265,6 +265,7 @@ public class GPSBari_list extends Activity {
                             break;
                         case R.id.rdoLandmark:
                             btnAdd.setText("New "+rdoLandmark.getText());
+                            LoadLandmark(PROJID,VCODE,"");
                             break;
                         case R.id.rdoPara:
                             btnAdd.setText("New "+rdoPara.getText());
@@ -403,7 +404,7 @@ public class GPSBari_list extends Activity {
     {
         try
         {
-
+            Toast.makeText(this, "LoadLandmark", Toast.LENGTH_SHORT).show();
             GPSLandmark_DataModel d = new GPSLandmark_DataModel();
             String SQL = "Select * from  GPSLandmark";
             List<GPSLandmark_DataModel> data = d.SelectAll(this, SQL);
@@ -429,7 +430,7 @@ public class GPSBari_list extends Activity {
                 map.put("lonSec", item.getlonSec());
                 dataList.add(map);
             }
-            dataAdapter = new SimpleAdapter(GPSBari_list.this, dataList, R.layout.gpslandmark_list,new String[] {"rowsec"},
+            dataAdapter = new SimpleAdapter(GPSBari_list.this, dataList, R.layout.gpsbari_list,new String[] {"rowsec"},
                     new int[] {R.id.secListRow});
             list.setAdapter(new DataListAdapter(this, dataAdapter));
         }
