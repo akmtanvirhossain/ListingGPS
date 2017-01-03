@@ -56,6 +56,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
+import android.widget.Toast;
 
 import Common.*;
 
@@ -172,6 +173,7 @@ public class GPSVDoctor extends Activity {
                 VDNO = VDNoSerial();
             }
 
+
             //turnGPSOn();
 
             //GPS Location
@@ -278,6 +280,7 @@ public class GPSVDoctor extends Activity {
                     DataSave();
                 }
             });
+            DataSearch(PROJID, VCODE, VDNO);
         } catch (Exception e) {
             Connection.MessageBox(GPSVDoctor.this, e.getMessage());
             return;
@@ -405,6 +408,7 @@ public class GPSVDoctor extends Activity {
             RadioButton rb;
             GPSVDoctor_DataModel d = new GPSVDoctor_DataModel();
             String SQL = "Select * from " + TableName + "  Where ProjId='" + ProjId + "' and VCode='" + VCode + "' and VDNo='" + VDNo + "'";
+
             List<GPSVDoctor_DataModel> data = d.SelectAll(this, SQL);
             for (GPSVDoctor_DataModel item : data) {
                 txtProjId.setText(item.getProjId());

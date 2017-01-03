@@ -214,7 +214,8 @@ public class GPSBari_list extends Activity {
                             break;
                     }
 
-                    if(spnVillage.getSelectedItem()!=null)
+
+                    if(spnVillage.getSelectedItem()!=null  )
                     {
                         if(rb!= -1 )
                         {
@@ -222,7 +223,9 @@ public class GPSBari_list extends Activity {
 
                         }
                     }else
-                        Toast.makeText(GPSBari_list.this, "Please Select Village", Toast.LENGTH_LONG).show();                }});
+                        Toast.makeText(GPSBari_list.this, "Please Select Village", Toast.LENGTH_LONG).show();
+                }
+            });
 
 
             //**************************added by sakib***************************
@@ -247,6 +250,33 @@ public class GPSBari_list extends Activity {
                 public void onNothingSelected(AdapterView<?> parentView) {
                 }
             });
+
+            spnVillage.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    VCODE = C.ReturnSingleValue("Select VCode from Village where VName='"+spnVillage.getSelectedItem()+"'");
+                    int rb=rdogrpBLD.getCheckedRadioButtonId();
+                    switch(rb)
+                    {
+                        case R.id.rdoBari:
+                            DataSearch(PROJID, VCODE, BARINO,"1");
+                            Toast.makeText(GPSBari_list.this, VCODE, Toast.LENGTH_SHORT).show();
+                            break;
+                        case R.id.rdoLandmark:
+                            DataSearch(PROJID, VCODE, BARINO,"2");
+                            break;
+                        case R.id.rdoDoctor:
+                            DataSearch(PROJID, VCODE, BARINO,"3");
+                            break;
+                    }
+                }
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+
+                }
+            });
+
+
 
             rdogrpBLD.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
                 @Override
@@ -302,6 +332,7 @@ public class GPSBari_list extends Activity {
 
             ListView list = (ListView)findViewById(R.id.lstData);
             HashMap<String, String> map;
+            TextView tvTotal= (TextView) findViewById(R.id.tvTotal);
 
             if(Type.equals("1")) {
                 SQL = "Select ProjId, VCode, ParaName, BariNo, BariName,TotalHH, latDeg, latMin, latSec, lonDeg, lonMin, lonSec, HCLoction, StartTime, EndTime, UserId, EntryUser, Lat, Lon, EnDt, Upload, modifyDate from GPSBari";
@@ -316,6 +347,9 @@ public class GPSBari_list extends Activity {
                     map.put("BariName", item.getBariName());
                     dataList.add(map);
                 }
+
+                tvTotal.setText("Total:"+data.size());
+
             }
             else if(Type.equals("2")) {
                 SQL = "Select ProjId, VCode, ParaName, LMNo, LMName, latDeg, latMin, latSec, lonDeg, lonMin, lonSec, StartTime, EndTime, UserId, EntryUser, Lat, Lon, EnDt, Upload, modifyDate from GPSLandmark";
@@ -330,6 +364,7 @@ public class GPSBari_list extends Activity {
                     map.put("BariName", item.getLMName());
                     dataList.add(map);
                 }
+                tvTotal.setText("Total:"+data.size());
             }
             else if(Type.equals("3")) {
                 SQL = "Select ProjId, VCode, ParaName, VDNo , VDName , VDType, PharName, latDeg, latMin, latSec, lonDeg, lonMin, lonSec, StartTime, EndTime, UserId, EntryUser, Lat, Lon, EnDt, Upload, modifyDate from GPSVDoctor";
@@ -344,6 +379,7 @@ public class GPSBari_list extends Activity {
                     map.put("BariName", item.getVDName());
                     dataList.add(map);
                 }
+                tvTotal.setText("Total:"+data.size());
             }
 
 
@@ -393,15 +429,40 @@ public class GPSBari_list extends Activity {
             BariName.setText(o.get("BariName"));
 
 
+
             secListRow.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     //Write your code here
                     Bundle IDbundle = new Bundle();
-                    IDbundle.putString("ProjId", o.get("ProjId"));
-                    IDbundle.putString("VCode", o.get("VCode"));
-                    IDbundle.putString("BariNo", o.get("BariNo"));
-                    Intent f1;
-                    f1 = new Intent(getApplicationContext(), GPSBari.class);
+                    int rb = rdogrpBLD.getCheckedRadioButtonId();
+                    Intent f1=null;
+
+                    switch(rb)
+                    {
+                        case R.id.rdoBari:
+                            IDbundle.putString("ProjId", o.get("ProjId"));
+                            IDbundle.putString("VCode", o.get("VCode"));
+                            IDbundle.putString("BariNo", o.get("BariNo"));
+                            f1 = new Intent(getApplicationContext(), GPSBari.class);
+                            break;
+                        case R.id.rdoLandmark:
+                            IDbundle.putString("ProjId", o.get("ProjId"));
+                            IDbundle.putString("VCode", o.get("VCode"));
+                            IDbundle.putString("LMNo", o.get("BariNo"));
+                            f1 = new Intent(getApplicationContext(), GPSLandmark.class);
+                            break;
+                        case R.id.rdoDoctor:
+                            IDbundle.putString("ProjId", o.get("ProjId"));
+                            IDbundle.putString("VCode", o.get("VCode"));
+                            IDbundle.putString("VDNo", o.get("BariNo"));
+
+                            f1 = new Intent(getApplicationContext(), GPSVDoctor.class);
+                            break;
+                        default:
+                            Toast.makeText(GPSBari_list.this, "Please Select Bari or Landmark or Doctor", Toast.LENGTH_SHORT).show();
+                            break;
+                    }
+
                     f1.putExtras(IDbundle);
                     startActivity(f1);
                 }
@@ -412,47 +473,7 @@ public class GPSBari_list extends Activity {
         }
     }
 
-    //test
-    private void LoadLandmark(String ProjId, String VCode, String BariNo)
-    {
-        try
-        {
-            Toast.makeText(this, "LoadLandmark", Toast.LENGTH_SHORT).show();
-            GPSLandmark_DataModel d = new GPSLandmark_DataModel();
-            String SQL = "Select * from  GPSLandmark";
-            List<GPSLandmark_DataModel> data = d.SelectAll(this, SQL);
-            dataList.clear();
 
-            dataAdapter = null;
-
-            ListView list = (ListView)findViewById(R.id.lstData);
-            HashMap<String, String> map;
-
-            for(GPSLandmark_DataModel item : data){
-                map = new HashMap<String, String>();
-                map.put("ProjId", item.getProjId());
-                map.put("VCode", item.getVCode());
-                map.put("ParaName", item.getParaName());
-                map.put("LMNo", item.getLMNo());
-                map.put("LMName", item.getLMName());
-                map.put("latDeg", item.getlatDeg());
-                map.put("latMin", item.getlatMin());
-                map.put("latSec", item.getlatSec());
-                map.put("lonDeg", item.getlonDeg());
-                map.put("lonMin", item.getlonMin());
-                map.put("lonSec", item.getlonSec());
-                dataList.add(map);
-            }
-            dataAdapter = new SimpleAdapter(GPSBari_list.this, dataList, R.layout.gpsbari_list,new String[] {"rowsec"},
-                    new int[] {R.id.secListRow});
-            list.setAdapter(new DataListAdapter(this, dataAdapter));
-        }
-        catch(Exception  e)
-        {
-            Connection.MessageBox(GPSBari_list.this, e.getMessage());
-            return;
-        }
-    }
 
 
 

@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:layout_width="fill_parent"  android:layout_height="wrap_content" android:scrollbars="vertical">
     <LinearLayout android:layout_width="fill_parent" android:layout_height="45sp" android:orientation="horizontal" android:background="@color/pageHeadingBack">
         <ImageButton android:id="@+id/cmdBack" android:background="@color/pageHeadingBack" android:src="@drawable/back" android:layout_width="50sp" android:layout_height="match_parent"/>
-        <TextView android:id="@+id/lblHeading" android:text="GPSBari"  android:paddingLeft="10sp" android:layout_width="match_parent" android:layout_height="match_parent" android:gravity="center_vertical" android:textSize="20sp" android:textColor="@color/pageHeading"/>
+        <TextView android:id="@+id/lblHeading" android:text="GPS Bari"  android:paddingLeft="10sp" android:layout_width="match_parent" android:layout_height="match_parent" android:gravity="center_vertical" android:textSize="20sp" android:textColor="@color/pageHeading"/>
     </LinearLayout>
     <View android:layout_height="1dip" android:layout_width="fill_parent" android:layout_marginBottom="5sp" android:background="#CCCCCC" />
     <ScrollView android:layout_width="fill_parent" android:layout_height="fill_parent" android:overScrollMode="always" android:isScrollContainer="true" android:scrollbarAlwaysDrawVerticalTrack="true" android:scrollbarStyle="outsideInset" android:scrollbars="vertical">
@@ -78,7 +78,7 @@
             <View android:id="@+id/linelonDeg" android:layout_height="1dip" android:layout_width="fill_parent" android:background="#CCCCCC" />
             <LinearLayout android:id="@+id/seclonMin" android:layout_width="fill_parent" android:layout_height="wrap_content" android:orientation="horizontal" style="@style/rowStyle0">
                 <TextView android:id="@+id/lbllonMin" android:text="" android:layout_width="60sp" android:layout_height="wrap_content" android:textSize="20sp" android:visibility="gone" />
-                <TextView android:id="@+id/VlbllonMin" android:text="Minuet" android:layout_width="220sp" android:layout_height="wrap_content" android:textSize="20sp" />
+                <TextView android:id="@+id/VlbllonMin" android:text="Minute" android:layout_width="220sp" android:layout_height="wrap_content" android:textSize="20sp" />
                 <EditText android:id="@+id/txtlonMin" android:maxLength="2" android:layout_width="100sp" android:inputType="number" android:layout_height="wrap_content" style="@style/customEdit" android:layout_marginRight="10sp" android:textSize="20sp" />
             </LinearLayout>
             <View android:id="@+id/linelonMin" android:layout_height="1dip" android:layout_width="fill_parent" android:background="#CCCCCC" />
