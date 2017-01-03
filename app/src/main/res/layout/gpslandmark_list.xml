@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:layout_width="fill_parent"  android:layout_height="wrap_content" android:scrollbars="vertical">
+    <LinearLayout android:layout_width="fill_parent" android:layout_height="45sp" android:orientation="horizontal" android:background="@color/pageHeadingBack">
+        <ImageButton android:id="@+id/cmdBack" android:background="@color/pageHeadingBack" android:src="@drawable/back" android:layout_width="50sp" android:layout_height="match_parent"/>
+        <TextView android:id="@+id/lblHeading" android:text="GPSLandmark" android:paddingLeft="10sp" android:layout_width="match_parent" android:layout_height="match_parent" android:gravity="center_vertical" android:textSize="20sp" android:textColor="@color/pageHeading"/>
+    </LinearLayout>
+    <View android:layout_height="1dip" android:layout_width="fill_parent" android:layout_marginBottom="5sp" android:background="#CCCCCC" />
+    <LinearLayout  android:layout_marginTop="5sp" android:layout_width="fill_parent" android:gravity="end" android:layout_height="wrap_content" android:orientation="horizontal">
+        <Button android:id="@+id/btnRefresh"  android:background="@drawable/button_style_blue" android:textSize="18sp" android:textColor="#FFFFFF"
+            android:layout_width="wrap_content" android:layout_height="30sp" android:layout_marginTop="5dip" android:layout_marginBottom="10sp" android:text=" refresh " android:paddingLeft="5sp" android:paddingRight="5sp"/>
+        <Button android:id="@+id/btnAdd" android:layout_marginLeft="20sp" android:layout_marginRight="20sp"  android:textSize="18sp" android:textColor="#FFFFFF"
+            android:background="@drawable/button_style_blue" android:layout_width="wrap_content" android:layout_height="30sp" android:layout_marginTop="5dip" android:layout_marginBottom="10sp" android:text=" + new " android:paddingLeft="5sp" android:paddingRight="5sp"/>
+    </LinearLayout>
+    <View android:layout_height="1dip" android:layout_width="fill_parent" android:layout_marginBottom="0sp" android:background="#CCCCCC" />
+    <ScrollView android:layout_width="fill_parent" android:layout_height="fill_parent" android:overScrollMode="always" android:isScrollContainer="true" android:scrollbarAlwaysDrawVerticalTrack="true" android:scrollbarStyle="outsideInset" android:scrollbars="vertical">
+        <LinearLayout android:layout_marginLeft="10sp" android:layout_width="fill_parent" android:layout_height="wrap_content" android:orientation="vertical">
+            <LinearLayout android:id="@+id/secListView" android:layout_width="fill_parent" android:layout_height="wrap_content" android:orientation="horizontal">
+                <ListView android:scrollbars="vertical"
+                    android:id="@+id/lstData"
+                    android:layout_width="match_parent"
+                    android:layout_height="250sp"
+                    android:divider="#000000"
+                    android:dividerHeight="1px"
+                    android:clickable="true">
+                </ListView>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

@@ -12,19 +12,20 @@
 
         <TextView
             android:text="Union"
-            android:layout_width="200sp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:id="@+id/tvUnion"
+            android:paddingLeft="10dp"
             android:layout_weight="1" />
 
         <Spinner
-            android:layout_width="300sp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:id="@+id/spnUnion"
             android:drawSelectorOnTop="true"
-            android:layout_weight="0" />
+            android:layout_weight="1" />
 
     </LinearLayout>
 
@@ -33,25 +34,27 @@
 
         <TextView
             android:text="Village"
-            android:layout_width="200sp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:id="@+id/tvVillage"
-            android:layout_weight="1" />
 
+            android:paddingLeft="10dp"
+            android:layout_weight="1" />
         <Spinner
-            android:layout_width="300sp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:id="@+id/spnVillage"
+
             android:drawSelectorOnTop="true"
-            android:layout_weight="0" />
+            android:layout_weight="1" />
 
     </LinearLayout>
 
     <RadioGroup android:id="@+id/rdogrpBLD" android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="20sp">
 
-        <RadioButton android:layout_height="wrap_content" android:layout_width="wrap_content" android:paddingRight="10dp" android:textSize="20sp" android:id="@+id/rdoBari" android:text="Bari"/>
+        <RadioButton android:layout_height="wrap_content" android:layout_width="wrap_content" android:paddingRight="10dp" android:textSize="20sp" android:id="@+id/rdoBari" android:text="Bari" />
         <RadioButton android:layout_height="wrap_content" android:layout_width="wrap_content" android:paddingRight="10dp" android:textSize="20sp" android:id="@+id/rdoLandmark" android:text="Landmark"/>
         <RadioButton android:layout_height="wrap_content" android:layout_width="wrap_content" android:paddingRight="10dp" android:textSize="20sp" android:id="@+id/rdoPara" android:text="Doctor"/>
     </RadioGroup>
@@ -65,8 +68,8 @@
         <Button android:id="@+id/btnRefresh"  android:background="@drawable/button_style_blue" android:textSize="18sp" android:textColor="#FFFFFF"
             android:layout_width="wrap_content" android:layout_height="30sp" android:layout_marginTop="5dip" android:layout_marginBottom="10sp" android:text=" refresh " android:paddingLeft="5sp" android:paddingRight="5sp"/>
         <Button android:id="@+id/btnAdd" android:layout_marginLeft="20sp" android:layout_marginRight="20sp"  android:textSize="18sp" android:textColor="#FFFFFF"
-            android:background="@drawable/button_style_blue" android:layout_width="wrap_content" android:layout_height="30sp" android:layout_marginTop="5dip" android:layout_marginBottom="10sp" android:text=" + new " android:paddingLeft="5sp" android:paddingRight="5sp"/>
-    </LinearLayout>
+            android:background="@drawable/button_style_blue" android:layout_width="170sp" android:layout_height="30sp" android:layout_marginTop="5dip" android:layout_marginBottom="10sp" android:text="New Bari" android:paddingLeft="5sp" android:paddingRight="5sp"/>
+</LinearLayout>
 
 
     <!--****************** added by sakib**************-->

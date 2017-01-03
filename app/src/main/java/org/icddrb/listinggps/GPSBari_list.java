@@ -104,7 +104,25 @@ public class GPSBari_list extends Activity {
 
             rdogrpBLD= (RadioGroup) findViewById(R.id.rdogrpBLD);
 
+
             rdoBari= (RadioButton) findViewById(R.id.rdoBari);
+            rdoBari.setChecked(true);
+
+//            rdoBari.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+////                    Intent intent = new Intent(getApplicationContext(), GPSBari.class);
+////                    Bundle IDbundle = new Bundle();
+////                    IDbundle.putString("BariNo", "");
+////                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+////                    intent.putExtras(IDbundle);
+//                    Toast.makeText(GPSBari_list.this, "Click", Toast.LENGTH_SHORT).show();
+//                    rdoBari.setChecked(true);
+//                }
+//            });
+//            rdoBari.performClick();
+
+
             rdoLandmark= (RadioButton) findViewById(R.id.rdoLandmark);
             rdoPara= (RadioButton) findViewById(R.id.rdoPara);
             //**************************added by sakib***************************
@@ -188,6 +206,7 @@ public class GPSBari_list extends Activity {
                             IDbundle.putString("LMNo", "");
                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             intent.putExtras(IDbundle);
+                            LoadLandmark(PROJID,VCODE,"");
 //                            intent.putExtras(IDbundle);
                             break;
                         case R.id.rdoPara:
@@ -199,7 +218,7 @@ public class GPSBari_list extends Activity {
 //                            intent.putExtras(IDbundle);
                             break;
                         default:
-                            Toast.makeText(GPSBari_list.this, "Nothing is Selected", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(GPSBari_list.this, "Please Select Bari or Landmark or Doctor", Toast.LENGTH_SHORT).show();
                             break;
                     }
 
@@ -253,6 +272,8 @@ public class GPSBari_list extends Activity {
                     }
                 }
             });
+
+
 
 
             //**************************added by sakib***************************
@@ -376,6 +397,49 @@ public class GPSBari_list extends Activity {
             return convertView;
         }
     }
+
+    //test
+    private void LoadLandmark(String ProjId, String VCode, String BariNo)
+    {
+        try
+        {
+
+            GPSLandmark_DataModel d = new GPSLandmark_DataModel();
+            String SQL = "Select * from  GPSLandmark";
+            List<GPSLandmark_DataModel> data = d.SelectAll(this, SQL);
+            dataList.clear();
+
+            dataAdapter = null;
+
+            ListView list = (ListView)findViewById(R.id.lstData);
+            HashMap<String, String> map;
+
+            for(GPSLandmark_DataModel item : data){
+                map = new HashMap<String, String>();
+                map.put("ProjId", item.getProjId());
+                map.put("VCode", item.getVCode());
+                map.put("ParaName", item.getParaName());
+                map.put("LMNo", item.getLMNo());
+                map.put("LMName", item.getLMName());
+                map.put("latDeg", item.getlatDeg());
+                map.put("latMin", item.getlatMin());
+                map.put("latSec", item.getlatSec());
+                map.put("lonDeg", item.getlonDeg());
+                map.put("lonMin", item.getlonMin());
+                map.put("lonSec", item.getlonSec());
+                dataList.add(map);
+            }
+            dataAdapter = new SimpleAdapter(GPSBari_list.this, dataList, R.layout.gpslandmark_list,new String[] {"rowsec"},
+                    new int[] {R.id.secListRow});
+            list.setAdapter(new DataListAdapter(this, dataAdapter));
+        }
+        catch(Exception  e)
+        {
+            Connection.MessageBox(GPSBari_list.this, e.getMessage());
+            return;
+        }
+    }
+
 
 
 }
