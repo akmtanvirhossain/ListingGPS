@@ -71,12 +71,12 @@ public class GPSBari_list extends Activity {
     Button btnRefresh;
 
     //************added by sakib***************
-    TextView tvUnion,tvVillage;
+    TextView tvUnion,tvVillage,tvListHeadingNo,tvListHeadingName,tvListHeadingPara;
     Spinner spnUnion,spnVillage;
 
     RadioGroup rdogrpBLD;
 
-    RadioButton rdoBari,rdoLandmark,rdoPara;
+    RadioButton rdoBari,rdoLandmark,rdoDoctor;
 
     //************added by sakib***************
 
@@ -108,23 +108,14 @@ public class GPSBari_list extends Activity {
             rdoBari= (RadioButton) findViewById(R.id.rdoBari);
             rdoBari.setChecked(true);
 
-//            rdoBari.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-////                    Intent intent = new Intent(getApplicationContext(), GPSBari.class);
-////                    Bundle IDbundle = new Bundle();
-////                    IDbundle.putString("BariNo", "");
-////                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-////                    intent.putExtras(IDbundle);
-//                    Toast.makeText(GPSBari_list.this, "Click", Toast.LENGTH_SHORT).show();
-//                    rdoBari.setChecked(true);
-//                }
-//            });
-//            rdoBari.performClick();
+            tvListHeadingNo= (TextView) findViewById(R.id.tvListHeadingNo);
+            tvListHeadingName= (TextView) findViewById(R.id.tvListHeadingName);
+            tvListHeadingPara= (TextView) findViewById(R.id.tvListHeadingPara);
+
 
 
             rdoLandmark= (RadioButton) findViewById(R.id.rdoLandmark);
-            rdoPara= (RadioButton) findViewById(R.id.rdoPara);
+            rdoDoctor= (RadioButton) findViewById(R.id.rdoDoctor);
             //**************************added by sakib***************************
 
             lblHeading = (TextView)findViewById(R.id.lblHeading);
@@ -169,7 +160,9 @@ public class GPSBari_list extends Activity {
 
                 public void onClick(View view) {
                     //write your code here
-                    DataSearch(PROJID, VCODE, BARINO);
+                    if(rdoBari.isChecked()) DataSearch(PROJID, VCODE, BARINO,"1");
+                    else if(rdoLandmark.isChecked()) DataSearch(PROJID, VCODE, BARINO,"2");
+                    else if(rdoDoctor.isChecked()) DataSearch(PROJID, VCODE, BARINO,"3");
 
                 }});
 
@@ -183,12 +176,11 @@ public class GPSBari_list extends Activity {
                     IDbundle.putString("ProjId", PROJID);
                     IDbundle.putString("VCode", VCODE);
 
-
-
-
                     String[] d_rdogrpElectricity = new String[]{"1", "2", "3"};
 
                     int rb = rdogrpBLD.getCheckedRadioButtonId();
+
+
 
                     Intent intent = null;
 
@@ -209,7 +201,7 @@ public class GPSBari_list extends Activity {
 
 //                            intent.putExtras(IDbundle);
                             break;
-                        case R.id.rdoPara:
+                        case R.id.rdoDoctor:
                             intent = new Intent(getApplicationContext(), GPSVDoctor.class);
                             IDbundle.putString("VDNo", "");
                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -222,13 +214,15 @@ public class GPSBari_list extends Activity {
                             break;
                     }
 
-                    if(rb!= -1)
+                    if(spnVillage.getSelectedItem()!=null)
                     {
-                        getApplicationContext().startActivity(intent);
-                    }
+                        if(rb!= -1 )
+                        {
+                            getApplicationContext().startActivity(intent);
 
-
-                }});
+                        }
+                    }else
+                        Toast.makeText(GPSBari_list.this, "Please Select Village", Toast.LENGTH_LONG).show();                }});
 
 
             //**************************added by sakib***************************
@@ -260,27 +254,34 @@ public class GPSBari_list extends Activity {
                     switch(checkedId)
                     {
                         case R.id.rdoBari:
-
+                            tvListHeadingNo.setText("Bari No");
+                            tvListHeadingName.setText("Bari Name");
+                            tvListHeadingPara.setText("Para Name");
+                            DataSearch(PROJID, VCODE, BARINO,"1");
                             btnAdd.setText("New "+rdoBari.getText());
                             break;
                         case R.id.rdoLandmark:
+                            tvListHeadingNo.setText("Landmark No");
+                            tvListHeadingName.setText("Landmark Name");
+                            tvListHeadingPara.setText("Para Name");
+                            DataSearch(PROJID, VCODE, BARINO,"2");
                             btnAdd.setText("New "+rdoLandmark.getText());
-                            LoadLandmark(PROJID,VCODE,"");
                             break;
-                        case R.id.rdoPara:
-                            btnAdd.setText("New "+rdoPara.getText());
+                        case R.id.rdoDoctor:
+                            tvListHeadingNo.setText("Doctor No");
+                            tvListHeadingName.setText("Doctor Name");
+                            tvListHeadingPara.setText("Para Name");
+                            DataSearch(PROJID, VCODE, BARINO,"3");
+                            btnAdd.setText("New "+rdoDoctor.getText());
                             break;
                     }
                 }
             });
-
-
-
-
             //**************************added by sakib***************************
 
 
-            DataSearch(PROJID, VCODE, BARINO);
+
+            DataSearch(PROJID, VCODE, BARINO,"1");
 
 
         }
@@ -290,15 +291,11 @@ public class GPSBari_list extends Activity {
             return;
         }
     }
-    private void DataSearch(String ProjId, String VCode, String BariNo)
+    private void DataSearch(String ProjId, String VCode, String BariNo,String Type)
     {
         try
         {
-
-            GPSBari_DataModel d = new GPSBari_DataModel();
-            //String SQL = "Select * from "+ TableName +"  Where ProjId='"+ ProjId +"' and VCode='"+ VCode +"' and BariNo='"+ BariNo +"'";
-            String SQL = "Select * from "+ TableName;
-            List<GPSBari_DataModel> data = d.SelectAll(this, SQL);
+            String SQL = "";
             dataList.clear();
 
             dataAdapter = null;
@@ -306,23 +303,53 @@ public class GPSBari_list extends Activity {
             ListView list = (ListView)findViewById(R.id.lstData);
             HashMap<String, String> map;
 
-            for(GPSBari_DataModel item : data){
-                map = new HashMap<String, String>();
-                map.put("ProjId", item.getProjId());
-                map.put("VCode", item.getVCode());
-                map.put("ParaName", item.getParaName());
-                map.put("BariNo", item.getBariNo());
-                map.put("BariName", item.getBariName());
-                map.put("TotalHH", item.getTotalHH());
-                map.put("latDeg", item.getlatDeg());
-                map.put("latMin", item.getlatMin());
-                map.put("latSec", item.getlatSec());
-                map.put("lonDeg", item.getlonDeg());
-                map.put("lonMin", item.getlonMin());
-                map.put("lonSec", item.getlonSec());
-                map.put("HCLoction", item.getHCLoction());
-                dataList.add(map);
+            if(Type.equals("1")) {
+                SQL = "Select ProjId, VCode, ParaName, BariNo, BariName,TotalHH, latDeg, latMin, latSec, lonDeg, lonMin, lonSec, HCLoction, StartTime, EndTime, UserId, EntryUser, Lat, Lon, EnDt, Upload, modifyDate from GPSBari";
+                GPSBari_DataModel d = new GPSBari_DataModel();
+                List<GPSBari_DataModel> data = d.SelectAll(this, SQL);
+                for(GPSBari_DataModel item : data){
+                    map = new HashMap<String, String>();
+                    map.put("ProjId", item.getProjId());
+                    map.put("VCode", item.getVCode());
+                    map.put("ParaName", item.getParaName());
+                    map.put("BariNo", item.getBariNo());
+                    map.put("BariName", item.getBariName());
+                    dataList.add(map);
+                }
             }
+            else if(Type.equals("2")) {
+                SQL = "Select ProjId, VCode, ParaName, LMNo, LMName, latDeg, latMin, latSec, lonDeg, lonMin, lonSec, StartTime, EndTime, UserId, EntryUser, Lat, Lon, EnDt, Upload, modifyDate from GPSLandmark";
+                GPSLandmark_DataModel d = new GPSLandmark_DataModel();
+                List<GPSLandmark_DataModel> data = d.SelectAll(this, SQL);
+                for(GPSLandmark_DataModel item : data){
+                    map = new HashMap<String, String>();
+                    map.put("ProjId", item.getProjId());
+                    map.put("VCode", item.getVCode());
+                    map.put("ParaName", item.getParaName());
+                    map.put("BariNo", item.getLMNo());
+                    map.put("BariName", item.getLMName());
+                    dataList.add(map);
+                }
+            }
+            else if(Type.equals("3")) {
+                SQL = "Select ProjId, VCode, ParaName, VDNo , VDName , VDType, PharName, latDeg, latMin, latSec, lonDeg, lonMin, lonSec, StartTime, EndTime, UserId, EntryUser, Lat, Lon, EnDt, Upload, modifyDate from GPSVDoctor";
+                GPSVDoctor_DataModel d = new GPSVDoctor_DataModel();
+                List<GPSVDoctor_DataModel> data = d.SelectAll(this, SQL);
+                for(GPSVDoctor_DataModel item : data){
+                    map = new HashMap<String, String>();
+                    map.put("ProjId", item.getProjId());
+                    map.put("VCode", item.getVCode());
+                    map.put("ParaName", item.getParaName());
+                    map.put("BariNo", item.getVDNo());
+                    map.put("BariName", item.getVDName());
+                    dataList.add(map);
+                }
+            }
+
+
+
+
+
             dataAdapter = new SimpleAdapter(GPSBari_list.this, dataList, R.layout.gpsbari_list,new String[] {"rowsec"},
                     new int[] {R.id.secListRow});
             list.setAdapter(new DataListAdapter(this, dataAdapter));
@@ -356,14 +383,7 @@ public class GPSBari_list extends Activity {
             final TextView ParaName = (TextView)convertView.findViewById(R.id.ParaName);
             final TextView BariNo = (TextView)convertView.findViewById(R.id.BariNo);
             final TextView BariName = (TextView)convertView.findViewById(R.id.BariName);
-//            final TextView TotalHH = (TextView)convertView.findViewById(R.id.TotalHH);
-//            final TextView latDeg = (TextView)convertView.findViewById(R.id.latDeg);
-//            final TextView latMin = (TextView)convertView.findViewById(R.id.latMin);
-//            final TextView latSec = (TextView)convertView.findViewById(R.id.latSec);
-//            final TextView lonDeg = (TextView)convertView.findViewById(R.id.lonDeg);
-//            final TextView lonMin = (TextView)convertView.findViewById(R.id.lonMin);
-//            final TextView lonSec = (TextView)convertView.findViewById(R.id.lonSec);
-//            final TextView HCLoction = (TextView)convertView.findViewById(R.id.HCLoction);
+
 
             final HashMap<String, String> o = (HashMap<String, String>) dataAdap.getItem(position);
 //            ProjId.setText(o.get("ProjId"));
@@ -371,14 +391,7 @@ public class GPSBari_list extends Activity {
             ParaName.setText(o.get("ParaName"));
             BariNo.setText(o.get("BariNo"));
             BariName.setText(o.get("BariName"));
-//            TotalHH.setText(o.get("TotalHH"));
-//            latDeg.setText(o.get("latDeg"));
-//            latMin.setText(o.get("latMin"));
-//            latSec.setText(o.get("latSec"));
-//            lonDeg.setText(o.get("lonDeg"));
-//            lonMin.setText(o.get("lonMin"));
-//            lonSec.setText(o.get("lonSec"));
-//            HCLoction.setText(o.get("HCLoction"));
+
 
             secListRow.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
