@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content" android:scrollbars="vertical">
+    <LinearLayout android:id="@+id/secListRow" android:layout_marginTop="5sp" android:layout_marginBottom="5sp" android:layout_width="fill_parent" android:layout_height="wrap_content" android:orientation="horizontal">
+        <!--<TextView android:id="@+id/ProjId" android:layout_width="50dp" android:gravity="center" android:layout_height="wrap_content"/>-->
+        <!--<TextView android:id="@+id/VCode" android:layout_width="50dp" android:gravity="center" android:layout_height="wrap_content"/>-->
+        <TextView android:id="@+id/BariNo" android:layout_width="50dp" android:gravity="center" android:layout_height="wrap_content" android:layout_weight="1"/>
+        <TextView android:id="@+id/BariName" android:layout_width="50dp" android:gravity="center" android:layout_height="wrap_content" android:layout_weight="1"/>
+        <TextView android:id="@+id/ParaName" android:layout_width="50dp" android:gravity="center" android:layout_height="wrap_content" android:layout_weight="1"/>
+        <!--<TextView android:id="@+id/TotalHH" android:layout_width="50dp" android:gravity="center" android:layout_height="wrap_content"/>-->
+        <!--<TextView android:id="@+id/latDeg" android:layout_width="50dp" android:gravity="center" android:layout_height="wrap_content"/>-->
+        <!--<TextView android:id="@+id/latMin" android:layout_width="50dp" android:gravity="center" android:layout_height="wrap_content"/>-->
+        <!--<TextView android:id="@+id/latSec" android:layout_width="50dp" android:gravity="center" android:layout_height="wrap_content"/>-->
+        <!--<TextView android:id="@+id/lonDeg" android:layout_width="50dp" android:gravity="center" android:layout_height="wrap_content"/>-->
+        <!--<TextView android:id="@+id/lonMin" android:layout_width="50dp" android:gravity="center" android:layout_height="wrap_content"/>-->
+        <!--<TextView android:id="@+id/lonSec" android:layout_width="50dp" android:gravity="center" android:layout_height="wrap_content"/>-->
+        <!--<TextView android:id="@+id/HCLoction" android:layout_width="50dp" android:gravity="center" android:layout_height="wrap_content"/>-->
+    </LinearLayout>
+</LinearLayout>
