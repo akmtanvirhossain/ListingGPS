@@ -141,6 +141,8 @@ public class GPSLandmark extends Activity {
     TextView VlbllonSec;
     EditText txtlonSec;
 
+    TextView VlblVName;
+
     String StartTime;
     Bundle IDbundle;
     static String PROJID = "";
@@ -240,6 +242,9 @@ public class GPSLandmark extends Activity {
             txtlonSec = (EditText) findViewById(R.id.txtlonSec);
 
             //**************************added by sakib***************************
+
+            VlblVName= (TextView) findViewById(R.id.VlblVName);
+            VlblVName.setText(IDbundle.getString("VName"));
 
             txtLMNo.setText(LMNO);
 

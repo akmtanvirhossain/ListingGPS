@@ -149,6 +149,8 @@ public class GPSVDoctor extends Activity {
     TextView VlbllonSec;
     EditText txtlonSec;
 
+    TextView VlblVName;
+
     String StartTime;
     Bundle IDbundle;
     static String PROJID = "";
@@ -258,6 +260,9 @@ public class GPSVDoctor extends Activity {
 
 
             //**************************added by sakib***************************
+
+            VlblVName= (TextView) findViewById(R.id.VlblVName);
+            VlblVName.setText(IDbundle.getString("VName"));
 
             txtVDNo.setText(VDNO);
             if (!PROJID.equals("")) {

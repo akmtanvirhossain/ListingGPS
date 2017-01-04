@@ -149,6 +149,8 @@ public class GPSBari extends Activity {
     TextView VlblHCLoction;
     EditText txtHCLoction;
 
+    TextView VlblVName;
+
     String StartTime;
     Bundle IDbundle;
     static String PROJID = "";
@@ -261,6 +263,9 @@ public class GPSBari extends Activity {
             txtHCLoction = (EditText) findViewById(R.id.txtHCLoction);
 
             //**************************added by sakib***************************
+
+            VlblVName= (TextView) findViewById(R.id.VlblVName);
+            VlblVName.setText(IDbundle.getString("VName"));
 
             txtBariNo.setText(BARINO);
             if(!PROJID.equals(""))

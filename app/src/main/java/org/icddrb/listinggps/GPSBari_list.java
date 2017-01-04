@@ -175,6 +175,7 @@ public class GPSBari_list extends Activity {
                     Bundle IDbundle = new Bundle();
                     IDbundle.putString("ProjId", PROJID);
                     IDbundle.putString("VCode", VCODE);
+                    IDbundle.putString("VName", (String) spnVillage.getSelectedItem());
 
                     String[] d_rdogrpElectricity = new String[]{"1", "2", "3"};
 
@@ -215,12 +216,11 @@ public class GPSBari_list extends Activity {
                     }
 
 
-                    if(spnVillage.getSelectedItem()!=null  )
+                    if(spnVillage.getSelectedItem()!=null)
                     {
                         if(rb!= -1 )
                         {
                             getApplicationContext().startActivity(intent);
-
                         }
                     }else
                         Toast.makeText(GPSBari_list.this, "Please Select Village", Toast.LENGTH_LONG).show();
@@ -231,13 +231,14 @@ public class GPSBari_list extends Activity {
             //**************************added by sakib***************************
 
 
-
-            spnUnion.setAdapter( (C.getArrayAdapter("Select '' Union Select distinct UnName||'-'||UnName from Village union Select '99-Others'")));
+            //"Select '' Union Select distinct UnName||'-'||UnName from Village union Select '99-Others'"
+            spnUnion.setAdapter( (C.getArrayAdapter("Select '' Union Select distinct UnName from Village")));
             spnUnion.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                     if (spnUnion.getSelectedItem().toString().length() == 0) return;
-                    spnVillage.setAdapter(C.getArrayAdapter("Select '  ' Union  Select distinct VName from Village where UnName='"+ Connection.SelectedSpinnerValue(spnUnion.getSelectedItem().toString(),"-")+"'  union Select '999-Others'"));
+                    spnVillage.setAdapter(C.getArrayAdapter("Select '  ' Union  Select distinct VName from Village where UnName='"+ Connection.SelectedSpinnerValue(spnUnion.getSelectedItem().toString(),"-")+"'"));
+
                     //spnVillage.setAdapter(C.getArrayAdapter("Select VName from Village where UnName='"+ Connection.SelectedSpinnerValue(spnUnion.getSelectedItem().toString(),"-")+"'  union Select '999-Others'"));
                     if(Connection.SelectedSpinnerValue(spnUnion.getSelectedItem().toString(),"-").equals("999"))
                         spnVillage.setSelection(Global.SpinnerItemPositionAnyLength(spnVillage,"999"));
@@ -260,13 +261,15 @@ public class GPSBari_list extends Activity {
                     {
                         case R.id.rdoBari:
                             DataSearch(PROJID, VCODE, BARINO,"1");
-                            Toast.makeText(GPSBari_list.this, VCODE, Toast.LENGTH_SHORT).show();
+
                             break;
                         case R.id.rdoLandmark:
                             DataSearch(PROJID, VCODE, BARINO,"2");
+
                             break;
                         case R.id.rdoDoctor:
                             DataSearch(PROJID, VCODE, BARINO,"3");
+
                             break;
                     }
                 }
@@ -335,7 +338,7 @@ public class GPSBari_list extends Activity {
             TextView tvTotal= (TextView) findViewById(R.id.tvTotal);
 
             if(Type.equals("1")) {
-                SQL = "Select ProjId, VCode, ParaName, BariNo, BariName,TotalHH, latDeg, latMin, latSec, lonDeg, lonMin, lonSec, HCLoction, StartTime, EndTime, UserId, EntryUser, Lat, Lon, EnDt, Upload, modifyDate from GPSBari";
+                SQL = "Select ProjId, VCode, ParaName, BariNo, BariName,TotalHH, latDeg, latMin, latSec, lonDeg, lonMin, lonSec, HCLoction, StartTime, EndTime, UserId, EntryUser, Lat, Lon, EnDt, Upload, modifyDate from GPSBari where VCode='"+VCode+"'";
                 GPSBari_DataModel d = new GPSBari_DataModel();
                 List<GPSBari_DataModel> data = d.SelectAll(this, SQL);
                 for(GPSBari_DataModel item : data){
@@ -352,7 +355,7 @@ public class GPSBari_list extends Activity {
 
             }
             else if(Type.equals("2")) {
-                SQL = "Select ProjId, VCode, ParaName, LMNo, LMName, latDeg, latMin, latSec, lonDeg, lonMin, lonSec, StartTime, EndTime, UserId, EntryUser, Lat, Lon, EnDt, Upload, modifyDate from GPSLandmark";
+                SQL = "Select ProjId, VCode, ParaName, LMNo, LMName, latDeg, latMin, latSec, lonDeg, lonMin, lonSec, StartTime, EndTime, UserId, EntryUser, Lat, Lon, EnDt, Upload, modifyDate from GPSLandmark where VCode='"+VCode+"'";
                 GPSLandmark_DataModel d = new GPSLandmark_DataModel();
                 List<GPSLandmark_DataModel> data = d.SelectAll(this, SQL);
                 for(GPSLandmark_DataModel item : data){
@@ -367,7 +370,7 @@ public class GPSBari_list extends Activity {
                 tvTotal.setText("Total:"+data.size());
             }
             else if(Type.equals("3")) {
-                SQL = "Select ProjId, VCode, ParaName, VDNo , VDName , VDType, PharName, latDeg, latMin, latSec, lonDeg, lonMin, lonSec, StartTime, EndTime, UserId, EntryUser, Lat, Lon, EnDt, Upload, modifyDate from GPSVDoctor";
+                SQL = "Select ProjId, VCode, ParaName, VDNo , VDName , VDType, PharName, latDeg, latMin, latSec, lonDeg, lonMin, lonSec, StartTime, EndTime, UserId, EntryUser, Lat, Lon, EnDt, Upload, modifyDate from GPSVDoctor where VCode='"+VCode+"'";
                 GPSVDoctor_DataModel d = new GPSVDoctor_DataModel();
                 List<GPSVDoctor_DataModel> data = d.SelectAll(this, SQL);
                 for(GPSVDoctor_DataModel item : data){
@@ -443,19 +446,21 @@ public class GPSBari_list extends Activity {
                             IDbundle.putString("ProjId", o.get("ProjId"));
                             IDbundle.putString("VCode", o.get("VCode"));
                             IDbundle.putString("BariNo", o.get("BariNo"));
+                            IDbundle.putString("VName", (String)spnVillage.getSelectedItem());
                             f1 = new Intent(getApplicationContext(), GPSBari.class);
                             break;
                         case R.id.rdoLandmark:
                             IDbundle.putString("ProjId", o.get("ProjId"));
                             IDbundle.putString("VCode", o.get("VCode"));
                             IDbundle.putString("LMNo", o.get("BariNo"));
+                            IDbundle.putString("VName",(String)spnVillage.getSelectedItem());
                             f1 = new Intent(getApplicationContext(), GPSLandmark.class);
                             break;
                         case R.id.rdoDoctor:
                             IDbundle.putString("ProjId", o.get("ProjId"));
                             IDbundle.putString("VCode", o.get("VCode"));
                             IDbundle.putString("VDNo", o.get("BariNo"));
-
+                            IDbundle.putString("VName",(String)spnVillage.getSelectedItem());
                             f1 = new Intent(getApplicationContext(), GPSVDoctor.class);
                             break;
                         default:

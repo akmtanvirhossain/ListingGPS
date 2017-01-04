@@ -28,9 +28,10 @@
             android:layout_weight="1"
             />
 
+
     </LinearLayout>
 
-
+    <View android:id="@+id/lineUnion" android:layout_height="1dip" android:layout_width="fill_parent" android:background="#CCCCCC" />
     <LinearLayout  android:layout_marginTop="5sp" android:layout_width="fill_parent" android:gravity="end" android:layout_height="wrap_content" android:orientation="horizontal" style="@style/rowHeading">
 
         <TextView
@@ -39,11 +40,10 @@
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:id="@+id/tvVillage"
-
             android:paddingLeft="10dp"
             android:layout_weight="1" />
         <Spinner
-            android:layout_width="220sp"
+            android:layout_width="140sp"
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:id="@+id/spnVillage"
@@ -51,7 +51,7 @@
             android:layout_weight="1" />
 
     </LinearLayout>
-
+    <View android:id="@+id/lineVillage" android:layout_height="1dip" android:layout_width="fill_parent" android:background="#CCCCCC" />
     <RadioGroup android:id="@+id/rdogrpBLD" android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="20sp"  style="@style/rowHeading">
 
         <RadioButton android:layout_height="wrap_content" android:layout_width="wrap_content" android:paddingRight="10dp" android:textSize="20sp" android:id="@+id/rdoBari" android:text="Bari"  />
@@ -92,8 +92,8 @@
             android:id="@+id/tvListHeadingNo"
             android:textColor="@android:color/white"
             android:layout_weight="1"
-            android:layout_gravity="start"
-            android:textAlignment="textStart"/>
+            android:layout_gravity="left"
+            />
 
         <TextView
             android:text="Name"
@@ -102,8 +102,8 @@
             android:id="@+id/tvListHeadingName"
             android:textColor="@android:color/white"
             android:layout_weight="1"
-            android:layout_gravity="start"
-            android:textAlignment="textStart"/>
+            android:layout_gravity="left"
+            />
 
         <TextView
             android:text="Para"
@@ -112,8 +112,8 @@
             android:id="@+id/tvListHeadingPara"
             android:textColor="@android:color/white"
             android:layout_weight="1"
-            android:layout_gravity="start"
-            android:textAlignment="textStart"/>
+            android:layout_gravity="left"
+            />
     </LinearLayout>
     <!--****************** added by sakib**************-->
 
