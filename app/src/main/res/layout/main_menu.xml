@@ -31,45 +31,6 @@
             android:paddingTop="0sp">
 
             <Button
-                android:id="@+id/cmdOutpatient"
-                style="@style/menuButtonStyle"
-                android:layout_width="fill_parent"
-                android:layout_marginBottom="5sp"
-                android:layout_marginLeft="20sp"
-                android:layout_marginRight="20sp"
-                android:background="@drawable/button_style_gray"
-                android:gravity="center|center_vertical"
-                android:text="Outpatient"
-                android:textColor="#FFFFFF"
-                android:textSize="20sp" />
-
-            <Button
-                android:id="@+id/cmdLaboratory"
-                style="@style/menuButtonStyle"
-                android:layout_width="fill_parent"
-                android:layout_marginBottom="5sp"
-                android:layout_marginLeft="20sp"
-                android:layout_marginRight="20sp"
-                android:background="@drawable/button_style_gray"
-                android:gravity="center|center_vertical"
-                android:text="Hospital Laboratory"
-                android:textColor="#FFFFFF"
-                android:textSize="20sp" />
-
-            <Button
-                android:id="@+id/cmdLabNetwork"
-                style="@style/menuButtonStyle"
-                android:layout_width="fill_parent"
-                android:layout_marginBottom="5sp"
-                android:layout_marginLeft="20sp"
-                android:layout_marginRight="20sp"
-                android:background="@drawable/button_style_gray"
-                android:gravity="center|center_vertical"
-                android:text="Laboratory Network"
-                android:textColor="#FFFFFF"
-                android:textSize="20sp" />
-
-            <Button
                 android:id="@+id/cmdGPSListing"
                 style="@style/menuButtonStyle"
                 android:layout_width="fill_parent"

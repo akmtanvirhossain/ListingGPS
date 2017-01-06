@@ -351,7 +351,8 @@ public class GPSBari_list extends Activity {
                     dataList.add(map);
                 }
 
-                tvTotal.setText("Total:"+data.size());
+                //tvTotal.setText("Total:"+data.size());
+                lblHeading.setText("GPS Listing (Total: "+ data.size()+")");
 
             }
             else if(Type.equals("2")) {
@@ -367,7 +368,7 @@ public class GPSBari_list extends Activity {
                     map.put("BariName", item.getLMName());
                     dataList.add(map);
                 }
-                tvTotal.setText("Total:"+data.size());
+                lblHeading.setText("GPS Listing (Total: "+ data.size()+")");
             }
             else if(Type.equals("3")) {
                 SQL = "Select ProjId, VCode, ParaName, VDNo , VDName , VDType, PharName, latDeg, latMin, latSec, lonDeg, lonMin, lonSec, StartTime, EndTime, UserId, EntryUser, Lat, Lon, EnDt, Upload, modifyDate from GPSVDoctor where VCode='"+VCode+"'";
@@ -382,7 +383,7 @@ public class GPSBari_list extends Activity {
                     map.put("BariName", item.getVDName());
                     dataList.add(map);
                 }
-                tvTotal.setText("Total:"+data.size());
+                lblHeading.setText("GPS Listing (Total: "+ data.size()+")");
             }
 
 
