@@ -170,8 +170,20 @@ public class GPSBari_list extends Activity {
             btnAdd.setOnClickListener(new View.OnClickListener() {
 
                 public void onClick(View view) {
+                    if(spnUnion.getSelectedItemPosition()==0){
+                        Toast.makeText(GPSBari_list.this, "Please Select Union", Toast.LENGTH_LONG).show();
+                        return;
+                    }else if(spnVillage.getSelectedItemPosition()==0)
+                    {
+                        Toast.makeText(GPSBari_list.this, "Please Select Village", Toast.LENGTH_LONG).show();
+                        return;
+                    }else if(!rdoBari.isChecked() & !rdoLandmark.isChecked() & !rdoDoctor.isChecked()){
+                        Toast.makeText(GPSBari_list.this, "Please Select Bari/Landmark/Doctor", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
 
-                    VCODE = C.ReturnSingleValue("Select VCode from Village where VName='"+spnVillage.getSelectedItem()+"'"); //where ParticipantID='"+ ParticipantID +"'");
+
+                    VCODE = C.ReturnSingleValue("Select VCode from Village where VName='"+ spnVillage.getSelectedItem() +"'");
                     Bundle IDbundle = new Bundle();
                     IDbundle.putString("ProjId", PROJID);
                     IDbundle.putString("VCode", VCODE);
@@ -229,14 +241,6 @@ public class GPSBari_list extends Activity {
                     }
 
 
-                    if(spnVillage.getSelectedItem()!=null)
-                    {
-                        if(rb!= -1 )
-                        {
-                            getApplicationContext().startActivity(intent);
-                        }
-                    }else
-                        Toast.makeText(GPSBari_list.this, "Please Select Village", Toast.LENGTH_LONG).show();
                 }
             });
 
