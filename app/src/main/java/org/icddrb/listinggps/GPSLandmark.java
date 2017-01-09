@@ -370,7 +370,11 @@ public class GPSLandmark extends Activity {
 
             String status = objSave.SaveUpdateData(this);
             if (status.length() == 0) {
+                Intent returnIntent = new Intent();
+                returnIntent.putExtra("res", "");
+                setResult(Activity.RESULT_OK, returnIntent);
                 Connection.MessageBox(GPSLandmark.this, "Saved Successfully");
+
             } else {
                 Connection.MessageBox(GPSLandmark.this, status);
                 return;

@@ -396,6 +396,9 @@ public class GPSVDoctor extends Activity {
 
             String status = objSave.SaveUpdateData(this);
             if (status.length() == 0) {
+                Intent returnIntent = new Intent();
+                returnIntent.putExtra("res", "");
+                setResult(Activity.RESULT_OK, returnIntent);
                 Connection.MessageBox(GPSVDoctor.this, "Saved Successfully");
             } else {
                 Connection.MessageBox(GPSVDoctor.this, status);

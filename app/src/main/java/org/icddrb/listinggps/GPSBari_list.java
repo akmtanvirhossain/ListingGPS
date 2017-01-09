@@ -188,27 +188,40 @@ public class GPSBari_list extends Activity {
                     switch(rb)
                     {
                         case R.id.rdoBari:
+                            //intent = new Intent(getApplicationContext(), GPSBari.class);
+                            //IDbundle.putString("BariNo", "");
+                            //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            //intent.putExtras(IDbundle);
+
                             intent = new Intent(getApplicationContext(), GPSBari.class);
                             IDbundle.putString("BariNo", "");
-                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             intent.putExtras(IDbundle);
+                            startActivityForResult(intent, 1);
 
                             break;
                         case R.id.rdoLandmark:
-                            intent = new Intent(getApplicationContext(), GPSLandmark.class);
+                            /*intent = new Intent(getApplicationContext(), GPSLandmark.class);
                             IDbundle.putString("LMNo", "");
                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                            intent.putExtras(IDbundle);
+                            intent.putExtras(IDbundle);*/
 
-//                            intent.putExtras(IDbundle);
+                            intent = new Intent(getApplicationContext(), GPSLandmark.class);
+                            IDbundle.putString("LMNo", "");
+                            intent.putExtras(IDbundle);
+                            startActivityForResult(intent, 1);
+
                             break;
                         case R.id.rdoDoctor:
-                            intent = new Intent(getApplicationContext(), GPSVDoctor.class);
+                            /*intent = new Intent(getApplicationContext(), GPSVDoctor.class);
                             IDbundle.putString("VDNo", "");
                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            intent.putExtras(IDbundle);*/
+
+                            intent = new Intent(getApplicationContext(), GPSVDoctor.class);
+                            IDbundle.putString("VDNo", "");
                             intent.putExtras(IDbundle);
-//                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                            intent.putExtras(IDbundle);
+                            startActivityForResult(intent, 1);
+
                             break;
                         default:
                             Toast.makeText(GPSBari_list.this, "Please Select Bari or Landmark or Doctor", Toast.LENGTH_SHORT).show();
@@ -324,6 +337,25 @@ public class GPSBari_list extends Activity {
             return;
         }
     }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_CANCELED) {
+            //Write your code if there's no result
+        } else {
+            if(rdoBari.isChecked())
+                DataSearch(PROJID, VCODE, BARINO,"1");
+            else if(rdoLandmark.isChecked())
+                DataSearch(PROJID, VCODE, BARINO,"2");
+            else if(rdoDoctor.isChecked())
+                DataSearch(PROJID, VCODE, BARINO,"3");
+
+        }
+    }
+
+
     private void DataSearch(String ProjId, String VCode, String BariNo,String Type)
     {
         try
