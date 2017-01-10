@@ -374,7 +374,7 @@ public class GPSBari_list extends Activity {
             TextView tvTotal= (TextView) findViewById(R.id.tvTotal);
 
             if(Type.equals("1")) {
-                SQL = "Select ProjId, VCode, ParaName, BariNo, BariName,TotalHH, latDeg, latMin, latSec, lonDeg, lonMin, lonSec, HCLoction, StartTime, EndTime, UserId, EntryUser, Lat, Lon, EnDt, Upload, modifyDate from GPSBari where VCode='"+VCode+"'";
+                SQL = "Select ProjId, VCode, ParaName, BariNo, WayPoint, BariName,TotalHH, latDeg, latMin, latSec, lonDeg, lonMin, lonSec, HCLoction, HCLoction1, HCLoction2, StartTime, EndTime, UserId, EntryUser, Lat, Lon, EnDt, Upload, modifyDate from GPSBari where VCode='"+VCode+"'";
                 GPSBari_DataModel d = new GPSBari_DataModel();
                 List<GPSBari_DataModel> data = d.SelectAll(this, SQL);
                 for(GPSBari_DataModel item : data){
@@ -392,7 +392,7 @@ public class GPSBari_list extends Activity {
 
             }
             else if(Type.equals("2")) {
-                SQL = "Select ProjId, VCode, ParaName, LMNo, LMName, latDeg, latMin, latSec, lonDeg, lonMin, lonSec, StartTime, EndTime, UserId, EntryUser, Lat, Lon, EnDt, Upload, modifyDate from GPSLandmark where VCode='"+VCode+"'";
+                SQL = "Select ProjId, VCode, ParaName, LMNo, WayPoint, LMName, latDeg, latMin, latSec, lonDeg, lonMin, lonSec, StartTime, EndTime, UserId, EntryUser, Lat, Lon, EnDt, Upload, modifyDate from GPSLandmark where VCode='"+VCode+"'";
                 GPSLandmark_DataModel d = new GPSLandmark_DataModel();
                 List<GPSLandmark_DataModel> data = d.SelectAll(this, SQL);
                 for(GPSLandmark_DataModel item : data){
@@ -407,7 +407,7 @@ public class GPSBari_list extends Activity {
                 lblHeading.setText("GPS Listing (Total: "+ data.size()+")");
             }
             else if(Type.equals("3")) {
-                SQL = "Select ProjId, VCode, ParaName, VDNo , VDName , VDType, PharName, latDeg, latMin, latSec, lonDeg, lonMin, lonSec, StartTime, EndTime, UserId, EntryUser, Lat, Lon, EnDt, Upload, modifyDate from GPSVDoctor where VCode='"+VCode+"'";
+                SQL = "Select ProjId, VCode, ParaName, HutBazar, VDNo ,WayPoint, VDName , VDType, VDTOther, PharName, latDeg, latMin, latSec, lonDeg, lonMin, lonSec, StartTime, EndTime, UserId, EntryUser, Lat, Lon, EnDt, Upload, modifyDate from GPSVDoctor where VCode='"+VCode+"'";
                 GPSVDoctor_DataModel d = new GPSVDoctor_DataModel();
                 List<GPSVDoctor_DataModel> data = d.SelectAll(this, SQL);
                 for(GPSVDoctor_DataModel item : data){

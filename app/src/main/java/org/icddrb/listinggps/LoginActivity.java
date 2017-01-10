@@ -92,6 +92,7 @@ public class LoginActivity extends Activity {
             {
                 //Reqular data sync
                 C.Sync_DatabaseStructure(UniqueID);
+                //C.Sync_Download("VillDocType",UniqueID,"");
                 //C.Sync_Download("DatabasTab",UniqueID,"");
             }
             //**************************************************************************************

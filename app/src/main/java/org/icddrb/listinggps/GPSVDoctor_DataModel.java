@@ -26,6 +26,34 @@ public class GPSVDoctor_DataModel{
     public void setVCode(String newValue){
         _VCode = newValue;
     }
+
+    //**************************added by sakib***************************
+    private String _WayPnt = "";
+    public String getWayPnt(){
+        return _WayPnt;
+    }
+    public void setWayPnt(String newValue){
+        _WayPnt = newValue;
+    }
+
+    private String _HutBazarName = "";
+    public String getHutBazarName(){
+        return _HutBazarName;
+    }
+    public void setHutBazarName(String newValue){
+        _HutBazarName = newValue;
+    }
+
+    private String _VDTypeOther = "";
+    public String getVDTypeOther(){
+        return _VDTypeOther;
+    }
+    public void setVDTypeOther(String newValue){
+        _VDTypeOther = newValue;
+    }
+
+    //**************************added by sakib***************************
+
     private String _ParaName = "";
     public String getParaName(){
         return _ParaName;
@@ -162,7 +190,8 @@ public class GPSVDoctor_DataModel{
         String SQL = "";
         try
         {
-            SQL = "Insert into "+ TableName +" (ProjId,VCode,ParaName,VDNo,VDName,VDType,PharName,latDeg,latMin,latSec,lonDeg,lonMin,lonSec,StartTime,EndTime,UserId,EntryUser,Lat,Lon,EnDt,Upload)Values('"+ _ProjId +"', '"+ _VCode +"', '"+ _ParaName +"', '"+ _VDNo +"', '"+ _VDName +"', '"+ _VDType +"', '"+ _PharName +"', '"+ _latDeg +"', '"+ _latMin +"', '"+ _latSec +"', '"+ _lonDeg +"', '"+ _lonMin +"', '"+ _lonSec +"', '"+ _StartTime +"', '"+ _EndTime +"', '"+ _UserId +"', '"+ _EntryUser +"', '"+ _Lat +"', '"+ _Lon +"', '"+ _EnDt +"', '"+ _Upload +"')";
+            //SQL = "Insert into "+ TableName +" (ProjId,VCode,ParaName,VDNo,VDName,VDType,PharName,latDeg,latMin,latSec,lonDeg,lonMin,lonSec,StartTime,EndTime,UserId,EntryUser,Lat,Lon,EnDt,Upload)Values('"+ _ProjId +"', '"+ _VCode +"', '"+ _ParaName +"', '"+ _VDNo +"', '"+ _VDName +"', '"+ _VDType +"', '"+ _PharName +"', '"+ _latDeg +"', '"+ _latMin +"', '"+ _latSec +"', '"+ _lonDeg +"', '"+ _lonMin +"', '"+ _lonSec +"', '"+ _StartTime +"', '"+ _EndTime +"', '"+ _UserId +"', '"+ _EntryUser +"', '"+ _Lat +"', '"+ _Lon +"', '"+ _EnDt +"', '"+ _Upload +"')";
+            SQL = "Insert into "+ TableName +" (ProjId,VCode,ParaName,VDNo,VDName,VDType,PharName,latDeg,latMin,latSec,lonDeg,lonMin,lonSec,StartTime,EndTime,UserId,EntryUser,Lat,Lon,EnDt,Upload,WayPoint,HutBazar,VDTOther)Values('"+ _ProjId +"', '"+ _VCode +"', '"+ _ParaName +"', '"+ _VDNo +"', '"+ _VDName +"', '"+ _VDType +"', '"+ _PharName +"', '"+ _latDeg +"', '"+ _latMin +"', '"+ _latSec +"', '"+ _lonDeg +"', '"+ _lonMin +"', '"+ _lonSec +"', '"+ _StartTime +"', '"+ _EndTime +"', '"+ _UserId +"', '"+ _EntryUser +"', '"+ _Lat +"', '"+ _Lon +"', '"+ _EnDt +"', '"+ _Upload+"', '"+ _WayPnt+"', '"+ _HutBazarName+"', '"+ _VDTypeOther +"')";
             C.Save(SQL);
             C.close();
         }
@@ -180,7 +209,7 @@ public class GPSVDoctor_DataModel{
         String SQL = "";
         try
         {
-            SQL = "Update "+ TableName +" Set Upload='2',ProjId = '"+ _ProjId +"',VCode = '"+ _VCode +"',ParaName = '"+ _ParaName +"',VDNo = '"+ _VDNo +"',VDName = '"+ _VDName +"',VDType = '"+ _VDType +"',PharName = '"+ _PharName +"',latDeg = '"+ _latDeg +"',latMin = '"+ _latMin +"',latSec = '"+ _latSec +"',lonDeg = '"+ _lonDeg +"',lonMin = '"+ _lonMin +"',lonSec = '"+ _lonSec +"'  Where ProjId='"+ _ProjId +"' and VCode='"+ _VCode +"' and VDNo='"+ _VDNo +"'";
+            SQL = "Update "+ TableName +" Set Upload='2',ProjId = '"+ _ProjId +"',VCode = '"+ _VCode+"',Waypoint = '"+ _WayPnt  +"',ParaName = '"+ _ParaName +"',HutBazar = '"+ _HutBazarName+"',VDNo = '"+ _VDNo +"',VDName = '"+ _VDName +"',VDType = '"+ _VDType +"',PharName = '"+ _PharName +"',latDeg = '"+ _latDeg +"',latMin = '"+ _latMin +"',latSec = '"+ _latSec +"',lonDeg = '"+ _lonDeg +"',lonMin = '"+ _lonMin +"',lonSec = '"+ _lonSec +"'  Where ProjId='"+ _ProjId +"' and VCode='"+ _VCode +"' and VDNo='"+ _VDNo +"'";
             C.Save(SQL);
             C.close();
         }
@@ -205,10 +234,13 @@ public class GPSVDoctor_DataModel{
             d = new GPSVDoctor_DataModel();
             d._ProjId = cur.getString(cur.getColumnIndex("ProjId"));
             d._VCode = cur.getString(cur.getColumnIndex("VCode"));
+            d._WayPnt = cur.getString(cur.getColumnIndex("WayPoint"));
             d._ParaName = cur.getString(cur.getColumnIndex("ParaName"));
+            d._HutBazarName = cur.getString(cur.getColumnIndex("HutBazar"));
             d._VDNo = cur.getString(cur.getColumnIndex("VDNo"));
             d._VDName = cur.getString(cur.getColumnIndex("VDName"));
             d._VDType = cur.getString(cur.getColumnIndex("VDType"));
+            d._VDTypeOther=cur.getString(cur.getColumnIndex("VDTOther"));
             d._PharName = cur.getString(cur.getColumnIndex("PharName"));
             d._latDeg = cur.getString(cur.getColumnIndex("latDeg"));
             d._latMin = cur.getString(cur.getColumnIndex("latMin"));
@@ -216,6 +248,7 @@ public class GPSVDoctor_DataModel{
             d._lonDeg = cur.getString(cur.getColumnIndex("lonDeg"));
             d._lonMin = cur.getString(cur.getColumnIndex("lonMin"));
             d._lonSec = cur.getString(cur.getColumnIndex("lonSec"));
+
             data.add(d);
 
             cur.moveToNext();

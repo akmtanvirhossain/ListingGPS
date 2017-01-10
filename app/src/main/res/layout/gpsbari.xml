@@ -27,6 +27,14 @@
                 <TextView android:id="@+id/VlblBariNo" android:text="Bari No" android:layout_width="150sp" android:layout_height="wrap_content" android:textSize="20sp" />
                 <EditText android:id="@+id/txtBariNo" android:maxLength="4" android:layout_width="100sp" android:inputType="text" android:layout_height="wrap_content" style="@style/customEdit" android:layout_marginRight="10sp" android:textSize="20sp" android:focusable="false" android:background="@android:color/darker_gray"/>
             </LinearLayout>
+
+            <View android:id="@+id/lineWayPnt" android:layout_height="1dip" android:layout_width="fill_parent" android:background="#CCCCCC" />
+            <LinearLayout android:id="@+id/secWayPnt" android:layout_width="fill_parent" android:layout_height="wrap_content" android:orientation="horizontal" style="@style/rowStyle0">
+                <TextView android:id="@+id/lblWayPnt" android:text="" android:layout_width="60sp" android:layout_height="wrap_content" android:textSize="20sp" android:visibility="gone" />
+                <TextView android:id="@+id/VlblWayPnt" android:text="Way Point" android:layout_width="150sp" android:layout_height="wrap_content" android:textSize="20sp" />
+                <EditText android:id="@+id/txtWayPnt" android:maxLength="3" android:layout_width="100sp" android:inputType="number" android:layout_height="wrap_content" style="@style/customEdit" android:layout_marginRight="10sp" android:textSize="20sp" />
+            </LinearLayout>
+
             <View android:id="@+id/lineVCode" android:layout_height="1dip" android:layout_width="fill_parent" android:background="#CCCCCC" />
             <LinearLayout android:id="@+id/secParaName" android:layout_width="fill_parent" android:layout_height="wrap_content" android:orientation="horizontal" style="@style/rowStyle0">
                 <TextView android:id="@+id/lblParaName" android:text="" android:layout_width="60sp" android:layout_height="wrap_content" android:textSize="20sp" android:visibility="gone" />
@@ -97,6 +105,21 @@
                 <EditText android:id="@+id/txtHCLoction" android:maxLength="100" android:layout_width="250sp" android:inputType="text" android:layout_height="wrap_content" style="@style/customEdit" android:layout_marginRight="10sp" android:textSize="20sp" />
             </LinearLayout>
             <View android:id="@+id/lineHCLoction" android:layout_height="1dip" android:layout_width="fill_parent" android:background="#CCCCCC" />
+
+            <LinearLayout android:id="@+id/secHCLoction1" android:layout_width="fill_parent" android:layout_height="wrap_content" android:orientation="horizontal" style="@style/rowStyle0">
+                <TextView android:id="@+id/lblHCLoction1" android:text="" android:layout_width="60sp" android:layout_height="wrap_content" android:textSize="20sp" android:visibility="gone" />
+                <TextView android:id="@+id/VlblHCLoction1" android:text="Health Care Location1" android:layout_width="220sp" android:layout_height="wrap_content" android:textSize="20sp" />
+                <EditText android:id="@+id/txtHCLoction1" android:maxLength="100" android:layout_width="250sp" android:inputType="text" android:layout_height="wrap_content" style="@style/customEdit" android:layout_marginRight="10sp" android:textSize="20sp" />
+            </LinearLayout>
+            <View android:id="@+id/lineHCLoction1" android:layout_height="1dip" android:layout_width="fill_parent" android:background="#CCCCCC" />
+
+            <LinearLayout android:id="@+id/secHCLoction2" android:layout_width="fill_parent" android:layout_height="wrap_content" android:orientation="horizontal" style="@style/rowStyle0">
+                <TextView android:id="@+id/lblHCLoction2" android:text="" android:layout_width="60sp" android:layout_height="wrap_content" android:textSize="20sp" android:visibility="gone" />
+                <TextView android:id="@+id/VlblHCLoction2" android:text="Health Care Location2" android:layout_width="220sp" android:layout_height="wrap_content" android:textSize="20sp" />
+                <EditText android:id="@+id/txtHCLoction2" android:maxLength="100" android:layout_width="250sp" android:inputType="text" android:layout_height="wrap_content" style="@style/customEdit" android:layout_marginRight="10sp" android:textSize="20sp" />
+            </LinearLayout>
+            <View android:id="@+id/lineHCLoction2" android:layout_height="1dip" android:layout_width="fill_parent" android:background="#CCCCCC" />
+
             <LinearLayout android:layout_width="fill_parent" android:paddingTop="20sp" android:layout_height="wrap_content" android:orientation="horizontal">
                 <Button android:id="@+id/cmdSave" android:layout_width="match_parent" android:layout_height="wrap_content" android:background="@drawable/button_style"
                     android:textSize="20sp" android:text=" Save -> Continue "  android:layout_marginBottom="10sp"/>

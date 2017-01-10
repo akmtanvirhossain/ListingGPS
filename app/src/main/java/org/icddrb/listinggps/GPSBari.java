@@ -149,7 +149,21 @@ public class GPSBari extends Activity {
     TextView VlblHCLoction;
     EditText txtHCLoction;
 
+    LinearLayout secHCLoction1;
+    View lineHCLoction1;
+    TextView VlblHCLoction1;
+    EditText txtHCLoction1;
+
+    LinearLayout secHCLoction2;
+    View lineHCLoction2;
+    TextView VlblHCLoction2;
+    EditText txtHCLoction2;
+
     TextView VlblVName;
+    LinearLayout secWayPnt;
+    View lineWayPnt;
+    TextView VlblWayPnt;
+    EditText txtWayPnt;
 
     String StartTime;
     Bundle IDbundle;
@@ -264,6 +278,21 @@ public class GPSBari extends Activity {
 
             //**************************added by sakib***************************
 
+            secHCLoction1 = (LinearLayout) findViewById(R.id.secHCLoction1);
+            lineHCLoction1 = (View) findViewById(R.id.lineHCLoction1);
+            VlblHCLoction1 = (TextView) findViewById(R.id.VlblHCLoction1);
+            txtHCLoction1 = (EditText) findViewById(R.id.txtHCLoction1);
+
+            secHCLoction2 = (LinearLayout) findViewById(R.id.secHCLoction2);
+            lineHCLoction2 = (View) findViewById(R.id.lineHCLoction2);
+            VlblHCLoction2 = (TextView) findViewById(R.id.VlblHCLoction2);
+            txtHCLoction2 = (EditText) findViewById(R.id.txtHCLoction2);
+
+            secWayPnt = (LinearLayout) findViewById(R.id.secWayPnt);
+            lineWayPnt = (View) findViewById(R.id.lineWayPnt);
+            VlblWayPnt = (TextView) findViewById(R.id.VlblWayPnt);
+            txtWayPnt = (EditText) findViewById(R.id.txtWayPnt);
+
             VlblVName= (TextView) findViewById(R.id.VlblVName);
             VlblVName.setText(IDbundle.getString("VName"));
 
@@ -373,6 +402,18 @@ public class GPSBari extends Activity {
                 Connection.MessageBox(GPSBari.this, "Required field: Health Care Location.");
                 txtHCLoction.requestFocus();
                 return;
+            }else if(txtHCLoction1.getText().toString().length()==0 & secHCLoction1.isShown()){
+                Connection.MessageBox(GPSBari.this, "Required field: Health Care Location1.");
+                txtHCLoction1.requestFocus();
+                return;
+            }else if(txtHCLoction2.getText().toString().length()==0 & secHCLoction2.isShown()){
+                Connection.MessageBox(GPSBari.this, "Required field: Health Care Location2.");
+                txtHCLoction2.requestFocus();
+                return;
+            }else if(txtWayPnt.getText().toString().length()==0 & secWayPnt.isShown()){
+                Connection.MessageBox(GPSBari.this, "Required field: Way Point.");
+                txtWayPnt.requestFocus();
+                return;
             }
 
             String SQL = "";
@@ -383,6 +424,9 @@ public class GPSBari extends Activity {
             objSave.setVCode(txtVCode.getText().toString());
             objSave.setParaName(txtParaName.getText().toString());
             objSave.setBariNo(txtBariNo.getText().toString());
+
+            objSave.setWayPnt(txtWayPnt.getText().toString());
+
             objSave.setBariName(txtBariName.getText().toString());
             objSave.setTotalHH(txtTotalHH.getText().toString());
             objSave.setlatDeg(txtlatDeg.getText().toString());
@@ -396,7 +440,12 @@ public class GPSBari extends Activity {
             objSave.setStartTime(StartTime);
             objSave.setEndTime(g.CurrentTime24());
             objSave.setUserId(g.getUserId());
-            objSave.setEntryUser(g.getUserId()); //from data entry user list
+            objSave.setEntryUser(g.getUserId());
+
+            objSave.setHCLoction1(txtHCLoction1.getText().toString());
+            objSave.setHCLoction2(txtHCLoction2.getText().toString());
+
+            //from data entry user list
             //objSave.setLat(Double.toString(currentLatitude));
             //objSave.setLon(Double.toString(currentLongitude));
 
@@ -439,6 +488,10 @@ public class GPSBari extends Activity {
                 txtlonMin.setText(item.getlonMin());
                 txtlonSec.setText(item.getlonSec());
                 txtHCLoction.setText(item.getHCLoction());
+                txtWayPnt.setText(item.getWayPnt());
+                txtHCLoction1.setText(item.getHCLoction1());
+                txtHCLoction2.setText(item.getHCLoction2());
+                //txtHCLoction2.setText(item.getHCLoction2());
             }
         } catch (Exception e) {
             Connection.MessageBox(GPSBari.this, e.getMessage());

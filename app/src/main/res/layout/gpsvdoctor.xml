@@ -13,6 +13,7 @@
                 <EditText android:id="@+id/txtProjId" android:maxLength="5" android:layout_width="60sp" android:inputType="number" android:layout_height="wrap_content" style="@style/customEdit" android:layout_marginRight="10sp" android:textSize="20sp" android:focusable="false" android:background="@android:color/darker_gray" />
             </LinearLayout>
             <View android:id="@+id/lineProjId" android:layout_height="1dip" android:layout_width="fill_parent" android:background="#CCCCCC" />
+
             <LinearLayout android:id="@+id/secVCode" android:layout_width="fill_parent" android:layout_height="wrap_content" android:orientation="horizontal" style="@style/rowStyle0">
                 <TextView android:id="@+id/lblVCode" android:text="" android:layout_width="60sp" android:layout_height="wrap_content" android:textSize="20sp" android:visibility="gone"/>
                 <TextView android:id="@+id/VlblVCode" android:text="Village Code" android:layout_width="150sp" android:layout_height="wrap_content" android:textSize="20sp" />
@@ -21,12 +22,22 @@
             </LinearLayout>
             <View android:id="@+id/lineVCode" android:layout_height="1dip" android:layout_width="fill_parent" android:background="#CCCCCC" />
 
+
             <LinearLayout android:id="@+id/secVDNo" android:layout_width="fill_parent" android:layout_height="wrap_content" android:orientation="horizontal" style="@style/rowStyle0">
                 <TextView android:id="@+id/lblVDNo" android:text="" android:layout_width="60sp" android:layout_height="wrap_content" android:textSize="20sp" android:visibility="gone"/>
                 <TextView android:id="@+id/VlblVDNo" android:text="Doctor No" android:layout_width="150sp" android:layout_height="wrap_content" android:textSize="20sp" />
                 <EditText android:id="@+id/txtVDNo" android:maxLength="4" android:layout_width="100sp" android:inputType="text" android:layout_height="wrap_content" style="@style/customEdit" android:layout_marginRight="10sp" android:textSize="20sp" android:focusable="false" android:background="@android:color/darker_gray"/>
             </LinearLayout>
             <View android:id="@+id/lineVDNo" android:layout_height="1dip" android:layout_width="fill_parent" android:background="#CCCCCC" />
+
+
+            <LinearLayout android:id="@+id/secWayPnt" android:layout_width="fill_parent" android:layout_height="wrap_content" android:orientation="horizontal" style="@style/rowStyle0">
+                <TextView android:id="@+id/lblWayPnt" android:text="" android:layout_width="60sp" android:layout_height="wrap_content" android:textSize="20sp" android:visibility="gone" />
+                <TextView android:id="@+id/VlblWayPnt" android:text="Way Point" android:layout_width="150sp" android:layout_height="wrap_content" android:textSize="20sp" />
+                <EditText android:id="@+id/txtWayPnt" android:maxLength="3" android:layout_width="100sp" android:inputType="number" android:layout_height="wrap_content" style="@style/customEdit" android:layout_marginRight="10sp" android:textSize="20sp" />
+            </LinearLayout>
+            <View android:id="@+id/lineWayPnt" android:layout_height="1dip" android:layout_width="fill_parent" android:background="#CCCCCC" />
+
 
             <LinearLayout android:id="@+id/secParaName" android:layout_width="fill_parent" android:layout_height="wrap_content" android:orientation="horizontal" style="@style/rowStyle0">
                 <TextView android:id="@+id/lblParaName" android:text="" android:layout_width="60sp" android:layout_height="wrap_content" android:textSize="20sp" android:visibility="gone"/>
@@ -35,68 +46,99 @@
             </LinearLayout>
             <View android:id="@+id/lineParaName" android:layout_height="1dip" android:layout_width="fill_parent" android:background="#CCCCCC" />
 
+            <LinearLayout android:id="@+id/secHutBazar" android:layout_width="fill_parent" android:layout_height="wrap_content" android:orientation="horizontal" style="@style/rowStyle0">
+                <TextView android:id="@+id/lblHutBazar" android:text="" android:layout_width="60sp" android:layout_height="wrap_content" android:textSize="20sp" android:visibility="gone"/>
+                <TextView android:id="@+id/VlblHutBazar" android:text="Hut/Bazar Name" android:layout_width="150sp" android:layout_height="wrap_content" android:textSize="20sp" />
+                <EditText android:id="@+id/txtHutBazar" android:maxLength="100" android:layout_width="400sp" android:inputType="text" android:layout_height="wrap_content" style="@style/customEdit" android:layout_marginRight="10sp" android:textSize="20sp" />
+            </LinearLayout>
+            <View android:id="@+id/lineHutBazar" android:layout_height="1dip" android:layout_width="fill_parent" android:background="#CCCCCC" />
+
             <LinearLayout android:id="@+id/secVDName" android:layout_width="fill_parent" android:layout_height="wrap_content" android:orientation="horizontal" style="@style/rowStyle0">
                 <TextView android:id="@+id/lblVDName" android:text="" android:layout_width="60sp" android:layout_height="wrap_content" android:textSize="20sp" android:visibility="gone"/>
                 <TextView android:id="@+id/VlblVDName" android:text="Doctor Name" android:layout_width="150sp" android:layout_height="wrap_content" android:textSize="20sp" />
                 <EditText android:id="@+id/txtVDName" android:maxLength="100" android:layout_width="400sp" android:inputType="text" android:layout_height="wrap_content" style="@style/customEdit" android:layout_marginRight="10sp" android:textSize="20sp" />
             </LinearLayout>
             <View android:id="@+id/lineVDName" android:layout_height="1dip" android:layout_width="fill_parent" android:background="#CCCCCC" />
+
             <LinearLayout android:id="@+id/secVDType" android:layout_width="fill_parent" android:layout_height="wrap_content" android:orientation="horizontal" style="@style/rowStyle0">
                 <TextView android:id="@+id/lblVDType" android:text="" android:layout_width="60sp" android:layout_height="wrap_content" android:textSize="20sp" android:visibility="gone"/>
                 <TextView android:id="@+id/VlblVDType" android:text="Type Of Village Doctor" android:layout_width="220sp" android:layout_height="wrap_content" android:textSize="20sp" />
-                <EditText android:id="@+id/txtVDType" android:maxLength="2" android:layout_width="100sp" android:inputType="text" android:layout_height="wrap_content" style="@style/customEdit" android:layout_marginRight="10sp" android:textSize="20sp" />
+                <Spinner
+                    android:layout_width="350sp"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:id="@+id/spnVDType"
+                    android:drawSelectorOnTop="true"/>
             </LinearLayout>
             <View android:id="@+id/lineVDType" android:layout_height="1dip" android:layout_width="fill_parent" android:background="#CCCCCC" />
+
+            <LinearLayout android:id="@+id/secVDTypeOther" android:layout_width="fill_parent" android:layout_height="wrap_content" android:orientation="horizontal" style="@style/rowStyle0">
+                <TextView android:id="@+id/lblVDTypeOther" android:text="" android:layout_width="60sp" android:layout_height="wrap_content" android:textSize="20sp" android:visibility="gone"/>
+                <TextView android:id="@+id/VlblVDTypeOther" android:text="    i)Specify" android:layout_width="150sp" android:layout_height="wrap_content" android:textSize="20sp" />
+                <EditText android:id="@+id/txtVDTypeOther" android:maxLength="100" android:layout_width="400sp" android:inputType="text" android:layout_height="wrap_content" style="@style/customEdit" android:layout_marginRight="10sp" android:textSize="20sp" />
+            </LinearLayout>
+            <View android:id="@+id/lineVDTypeOther" android:layout_height="1dip" android:layout_width="fill_parent" android:background="#CCCCCC" />
+
             <LinearLayout android:id="@+id/secPharName" android:layout_width="fill_parent" android:layout_height="wrap_content" android:orientation="horizontal" style="@style/rowStyle0">
                 <TextView android:id="@+id/lblPharName" android:text="" android:layout_width="60sp" android:layout_height="wrap_content" android:textSize="20sp" android:visibility="gone"/>
                 <TextView android:id="@+id/VlblPharName" android:text="Pharmacy Name" android:layout_width="220sp" android:layout_height="wrap_content" android:textSize="20sp" />
                 <EditText android:id="@+id/txtPharName" android:maxLength="100" android:layout_width="250sp" android:inputType="text" android:layout_height="wrap_content" style="@style/customEdit" android:layout_marginRight="10sp" android:textSize="20sp" />
             </LinearLayout>
             <View android:id="@+id/linePharName" android:layout_height="1dip" android:layout_width="fill_parent" android:background="#CCCCCC" />
+
+
             <LinearLayout android:id="@+id/seclblLatitude" android:layout_width="fill_parent" android:layout_height="wrap_content" android:orientation="horizontal">
                 <TextView android:id="@+id/lblHlblLatitude" android:text=" Latitude" android:layout_width="match_parent" android:layout_height="wrap_content" android:textSize="20sp" style="@style/rowHeading"/>
             </LinearLayout>
             <View android:id="@+id/linelblLatitude" android:layout_height="1dip" android:layout_width="fill_parent" android:background="#CCCCCC" />
+
             <LinearLayout android:id="@+id/seclatDeg" android:layout_width="fill_parent" android:layout_height="wrap_content" android:orientation="horizontal" style="@style/rowStyle0">
                 <TextView android:id="@+id/lbllatDeg" android:text="" android:layout_width="60sp" android:layout_height="wrap_content" android:textSize="20sp" android:visibility="gone"/>
                 <TextView android:id="@+id/VlbllatDeg" android:text="Degree" android:layout_width="220sp" android:layout_height="wrap_content" android:textSize="20sp" />
                 <EditText android:id="@+id/txtlatDeg" android:maxLength="2" android:layout_width="100sp" android:inputType="number" android:layout_height="wrap_content" style="@style/customEdit" android:layout_marginRight="10sp" android:textSize="20sp" />
             </LinearLayout>
             <View android:id="@+id/linelatDeg" android:layout_height="1dip" android:layout_width="fill_parent" android:background="#CCCCCC" />
+
             <LinearLayout android:id="@+id/seclatMin" android:layout_width="fill_parent" android:layout_height="wrap_content" android:orientation="horizontal" style="@style/rowStyle0">
                 <TextView android:id="@+id/lbllatMin" android:text="" android:layout_width="60sp" android:layout_height="wrap_content" android:textSize="20sp" android:visibility="gone"/>
                 <TextView android:id="@+id/VlbllatMin" android:text="Minute" android:layout_width="220sp" android:layout_height="wrap_content" android:textSize="20sp" />
                 <EditText android:id="@+id/txtlatMin" android:maxLength="2" android:layout_width="100sp" android:inputType="number" android:layout_height="wrap_content" style="@style/customEdit" android:layout_marginRight="10sp" android:textSize="20sp" />
             </LinearLayout>
             <View android:id="@+id/linelatMin" android:layout_height="1dip" android:layout_width="fill_parent" android:background="#CCCCCC" />
+
             <LinearLayout android:id="@+id/seclatSec" android:layout_width="fill_parent" android:layout_height="wrap_content" android:orientation="horizontal" style="@style/rowStyle0">
                 <TextView android:id="@+id/lbllatSec" android:text="" android:layout_width="60sp" android:layout_height="wrap_content" android:textSize="20sp" android:visibility="gone"/>
                 <TextView android:id="@+id/VlbllatSec" android:text="Second" android:layout_width="220sp" android:layout_height="wrap_content" android:textSize="20sp" />
                 <EditText android:id="@+id/txtlatSec" android:maxLength="3" android:layout_width="100sp" android:inputType="number" android:layout_height="wrap_content" style="@style/customEdit" android:layout_marginRight="10sp" android:textSize="20sp" />
             </LinearLayout>
             <View android:id="@+id/linelatSec" android:layout_height="1dip" android:layout_width="fill_parent" android:background="#CCCCCC" />
+
             <LinearLayout android:id="@+id/seclblLongitude" android:layout_width="fill_parent" android:layout_height="wrap_content" android:orientation="horizontal">
                 <TextView android:id="@+id/lblHlblLongitude" android:text=" Longitude" android:layout_width="match_parent" android:layout_height="wrap_content" android:textSize="20sp" style="@style/rowHeading"/>
             </LinearLayout>
             <View android:id="@+id/linelblLongitude" android:layout_height="1dip" android:layout_width="fill_parent" android:background="#CCCCCC" />
+
             <LinearLayout android:id="@+id/seclonDeg" android:layout_width="fill_parent" android:layout_height="wrap_content" android:orientation="horizontal" style="@style/rowStyle0">
                 <TextView android:id="@+id/lbllonDeg" android:text="" android:layout_width="60sp" android:layout_height="wrap_content" android:textSize="20sp" android:visibility="gone"/>
                 <TextView android:id="@+id/VlbllonDeg" android:text="Degree" android:layout_width="220sp" android:layout_height="wrap_content" android:textSize="20sp" />
                 <EditText android:id="@+id/txtlonDeg" android:maxLength="2" android:layout_width="100sp" android:inputType="number" android:layout_height="wrap_content" style="@style/customEdit" android:layout_marginRight="10sp" android:textSize="20sp" />
             </LinearLayout>
             <View android:id="@+id/linelonDeg" android:layout_height="1dip" android:layout_width="fill_parent" android:background="#CCCCCC" />
+
             <LinearLayout android:id="@+id/seclonMin" android:layout_width="fill_parent" android:layout_height="wrap_content" android:orientation="horizontal" style="@style/rowStyle0">
                 <TextView android:id="@+id/lbllonMin" android:text="" android:layout_width="60sp" android:layout_height="wrap_content" android:textSize="20sp" android:visibility="gone"/>
                 <TextView android:id="@+id/VlbllonMin" android:text="Minute" android:layout_width="220sp" android:layout_height="wrap_content" android:textSize="20sp" />
                 <EditText android:id="@+id/txtlonMin" android:maxLength="2" android:layout_width="100sp" android:inputType="number" android:layout_height="wrap_content" style="@style/customEdit" android:layout_marginRight="10sp" android:textSize="20sp" />
             </LinearLayout>
             <View android:id="@+id/linelonMin" android:layout_height="1dip" android:layout_width="fill_parent" android:background="#CCCCCC" />
+
             <LinearLayout android:id="@+id/seclonSec" android:layout_width="fill_parent" android:layout_height="wrap_content" android:orientation="horizontal" style="@style/rowStyle0">
                 <TextView android:id="@+id/lbllonSec" android:text="" android:layout_width="60sp" android:layout_height="wrap_content" android:textSize="20sp" android:visibility="gone"/>
                 <TextView android:id="@+id/VlbllonSec" android:text="Second" android:layout_width="220sp" android:layout_height="wrap_content" android:textSize="20sp" />
                 <EditText android:id="@+id/txtlonSec" android:maxLength="3" android:layout_width="100sp" android:inputType="number" android:layout_height="wrap_content" style="@style/customEdit" android:layout_marginRight="10sp" android:textSize="20sp" />
             </LinearLayout>
             <View android:id="@+id/linelonSec" android:layout_height="1dip" android:layout_width="fill_parent" android:background="#CCCCCC" />
+
             <LinearLayout android:layout_width="fill_parent" android:paddingTop="20sp" android:layout_height="wrap_content" android:orientation="horizontal">
                 <Button android:id="@+id/cmdSave" android:layout_width="match_parent" android:layout_height="wrap_content" android:background="@drawable/button_style"
                     android:textSize="20sp" android:text=" Save -> Continue "  android:layout_marginBottom="10sp"/>

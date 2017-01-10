@@ -26,6 +26,19 @@ public class GPSBari_DataModel{
     public void setVCode(String newValue){
         _VCode = newValue;
     }
+
+
+    //**************************added by sakib***************************
+    private String _WayPnt = "";
+    public String getWayPnt(){
+        return _WayPnt;
+    }
+    public void setWayPnt(String newValue){
+        _WayPnt = newValue;
+    }
+
+    //**************************added by sakib***************************
+
     private String _ParaName = "";
     public String getParaName(){
         return _ParaName;
@@ -133,6 +146,24 @@ public class GPSBari_DataModel{
     }
     private String _Upload = "2";
 
+    private String _HCLoction1 = "";
+    public String getHCLoction1(){
+        return _HCLoction1;
+    }
+    public void setHCLoction1(String newValue){
+        _HCLoction1 = newValue;
+    }
+
+    private String _HCLoction2 = "";
+    public String getHCLoction2(){
+        return _HCLoction2;
+    }
+    public void setHCLoction2(String newValue){
+        _HCLoction2 = newValue;
+    }
+
+
+
     String TableName = "GPSBari";
 
     public String SaveUpdateData(Context context)
@@ -162,7 +193,8 @@ public class GPSBari_DataModel{
         String SQL = "";
         try
         {
-            SQL = "Insert into "+ TableName +" (ProjId,VCode,ParaName,BariNo,BariName,TotalHH,latDeg,latMin,latSec,lonDeg,lonMin,lonSec,HCLoction,StartTime,EndTime,UserId,EntryUser,Lat,Lon,EnDt,Upload)Values('"+ _ProjId +"', '"+ _VCode +"', '"+ _ParaName +"', '"+ _BariNo +"', '"+ _BariName +"', '"+ _TotalHH +"', '"+ _latDeg +"', '"+ _latMin +"', '"+ _latSec +"', '"+ _lonDeg +"', '"+ _lonMin +"', '"+ _lonSec +"', '"+ _HCLoction +"', '"+ _StartTime +"', '"+ _EndTime +"', '"+ _UserId +"', '"+ _EntryUser +"', '"+ _Lat +"', '"+ _Lon +"', '"+ _EnDt +"', '"+ _Upload +"')";
+            //SQL = "Insert into "+ TableName +" (ProjId,VCode,ParaName,BariNo,BariName,TotalHH,latDeg,latMin,latSec,lonDeg,lonMin,lonSec,HCLoction,StartTime,EndTime,UserId,EntryUser,Lat,Lon,EnDt,Upload)Values('"+ _ProjId +"', '"+ _VCode +"', '"+ _ParaName +"', '"+ _BariNo +"', '"+ _BariName +"', '"+ _TotalHH +"', '"+ _latDeg +"', '"+ _latMin +"', '"+ _latSec +"', '"+ _lonDeg +"', '"+ _lonMin +"', '"+ _lonSec +"', '"+ _HCLoction +"', '"+ _StartTime +"', '"+ _EndTime +"', '"+ _UserId +"', '"+ _EntryUser +"', '"+ _Lat +"', '"+ _Lon +"', '"+ _EnDt +"', '"+ _Upload +"')";
+            SQL = "Insert into "+ TableName +" (ProjId,VCode,ParaName,BariNo,WayPoint,BariName,TotalHH,latDeg,latMin,latSec,lonDeg,lonMin,lonSec,HCLoction,HCLoction1,HCLoction2,StartTime,EndTime,UserId,EntryUser,Lat,Lon,EnDt,Upload)Values('"+ _ProjId +"', '"+ _VCode +"', '"+ _ParaName +"', '"+ _BariNo +"', '"+_WayPnt+"', '"+ _BariName +"', '"+ _TotalHH +"', '"+ _latDeg +"', '"+ _latMin +"', '"+ _latSec +"', '"+ _lonDeg +"', '"+ _lonMin +"', '"+ _lonSec +"', '"+ _HCLoction+"', '"+ _HCLoction1+"', '"+ _HCLoction2 +"', '"+ _StartTime +"', '"+ _EndTime +"', '"+ _UserId +"', '"+ _EntryUser +"', '"+ _Lat +"', '"+ _Lon +"', '"+ _EnDt +"', '"+ _Upload +"')";
             C.Save(SQL);
             C.close();
         }
@@ -180,7 +212,7 @@ public class GPSBari_DataModel{
         String SQL = "";
         try
         {
-            SQL = "Update "+ TableName +" Set Upload='2',ProjId = '"+ _ProjId +"',VCode = '"+ _VCode +"',ParaName = '"+ _ParaName +"',BariNo = '"+ _BariNo +"',BariName = '"+ _BariName +"',TotalHH = '"+ _TotalHH +"',latDeg = '"+ _latDeg +"',latMin = '"+ _latMin +"',latSec = '"+ _latSec +"',lonDeg = '"+ _lonDeg +"',lonMin = '"+ _lonMin +"',lonSec = '"+ _lonSec +"',HCLoction = '"+ _HCLoction +"'  Where ProjId='"+ _ProjId +"' and VCode='"+ _VCode +"' and BariNo='"+ _BariNo +"'";
+            SQL = "Update "+ TableName +" Set Upload='2',ProjId = '"+ _ProjId +"',VCode = '"+ _VCode +"',ParaName = '"+ _ParaName +"',BariNo = '"+ _BariNo +"',WayPoint = '"+ _WayPnt +"',BariName = '"+ _BariName +"',TotalHH = '"+ _TotalHH +"',latDeg = '"+ _latDeg +"',latMin = '"+ _latMin +"',latSec = '"+ _latSec +"',lonDeg = '"+ _lonDeg +"',lonMin = '"+ _lonMin +"',lonSec = '"+ _lonSec +"',HCLoction = '"+ _HCLoction  +"',HCLoction1 = '"+ _HCLoction1 +"',HCLoction2 = '"+ _HCLoction2  +"'  Where ProjId='"+ _ProjId +"' and VCode='"+ _VCode +"' and BariNo='"+ _BariNo +"'";
             C.Save(SQL);
             C.close();
         }
@@ -207,6 +239,7 @@ public class GPSBari_DataModel{
             d._VCode = cur.getString(cur.getColumnIndex("VCode"));
             d._ParaName = cur.getString(cur.getColumnIndex("ParaName"));
             d._BariNo = cur.getString(cur.getColumnIndex("BariNo"));
+            d._WayPnt = cur.getString(cur.getColumnIndex("WayPoint"));
             d._BariName = cur.getString(cur.getColumnIndex("BariName"));
             d._TotalHH = cur.getString(cur.getColumnIndex("TotalHH"));
             d._latDeg = cur.getString(cur.getColumnIndex("latDeg"));
@@ -216,6 +249,8 @@ public class GPSBari_DataModel{
             d._lonMin = cur.getString(cur.getColumnIndex("lonMin"));
             d._lonSec = cur.getString(cur.getColumnIndex("lonSec"));
             d._HCLoction = cur.getString(cur.getColumnIndex("HCLoction"));
+            d._HCLoction1 = cur.getString(cur.getColumnIndex("HCLoction1"));
+            d._HCLoction2 = cur.getString(cur.getColumnIndex("HCLoction2"));
             data.add(d);
 
             cur.moveToNext();

@@ -35,6 +35,18 @@ public class GPSLandmark_DataModel{
     public void setLMNo(String newValue){
         _LMNo = newValue;
     }
+
+    //**************************added by sakib***************************
+    private String _WayPnt = "";
+    public String getWayPnt(){
+        return _WayPnt;
+    }
+    public void setWayPnt(String newValue){
+        _WayPnt = newValue;
+    }
+
+    //**************************added by sakib***************************
+
     private String _LMName = "";
     public String getLMName(){
         return _LMName;
@@ -143,7 +155,8 @@ public class GPSLandmark_DataModel{
         String SQL = "";
         try
         {
-            SQL = "Insert into "+ TableName +" (ProjId,VCode,ParaName,LMNo,LMName,latDeg,latMin,latSec,lonDeg,lonMin,lonSec,StartTime,EndTime,UserId,EntryUser,Lat,Lon,EnDt,Upload)Values('"+ _ProjId +"', '"+ _VCode +"', '"+ _ParaName +"', '"+ _LMNo +"', '"+ _LMName +"', '"+ _latDeg +"', '"+ _latMin +"', '"+ _latSec +"', '"+ _lonDeg +"', '"+ _lonMin +"', '"+ _lonSec +"', '"+ _StartTime +"', '"+ _EndTime +"', '"+ _UserId +"', '"+ _EntryUser +"', '"+ _Lat +"', '"+ _Lon +"', '"+ _EnDt +"', '"+ _Upload +"')";
+            //SQL = "Insert into "+ TableName +" (ProjId,VCode,ParaName,LMNo,LMName,latDeg,latMin,latSec,lonDeg,lonMin,lonSec,StartTime,EndTime,UserId,EntryUser,Lat,Lon,EnDt,Upload)Values('"+ _ProjId +"', '"+ _VCode +"', '"+ _ParaName +"', '"+ _LMNo +"', '"+ _LMName +"', '"+ _latDeg +"', '"+ _latMin +"', '"+ _latSec +"', '"+ _lonDeg +"', '"+ _lonMin +"', '"+ _lonSec +"', '"+ _StartTime +"', '"+ _EndTime +"', '"+ _UserId +"', '"+ _EntryUser +"', '"+ _Lat +"', '"+ _Lon +"', '"+ _EnDt +"', '"+ _Upload +"')";
+            SQL = "Insert into "+ TableName +" (ProjId,VCode,ParaName,LMNo,WayPoint,LMName,latDeg,latMin,latSec,lonDeg,lonMin,lonSec,StartTime,EndTime,UserId,EntryUser,Lat,Lon,EnDt,Upload)Values('"+ _ProjId +"', '"+ _VCode +"', '"+ _ParaName +"', '"+ _LMNo+"', '"+ _WayPnt +"', '"+ _LMName +"', '"+ _latDeg +"', '"+ _latMin +"', '"+ _latSec +"', '"+ _lonDeg +"', '"+ _lonMin +"', '"+ _lonSec +"', '"+ _StartTime +"', '"+ _EndTime +"', '"+ _UserId +"', '"+ _EntryUser +"', '"+ _Lat +"', '"+ _Lon +"', '"+ _EnDt +"', '"+ _Upload +"')";
             C.Save(SQL);
             C.close();
         }
@@ -161,7 +174,7 @@ public class GPSLandmark_DataModel{
         String SQL = "";
         try
         {
-            SQL = "Update "+ TableName +" Set Upload='2',ProjId = '"+ _ProjId +"',VCode = '"+ _VCode +"',ParaName = '"+ _ParaName +"',LMNo = '"+ _LMNo +"',LMName = '"+ _LMName +"',latDeg = '"+ _latDeg +"',latMin = '"+ _latMin +"',latSec = '"+ _latSec +"',lonDeg = '"+ _lonDeg +"',lonMin = '"+ _lonMin +"',lonSec = '"+ _lonSec +"'  Where ProjId='"+ _ProjId +"' and VCode='"+ _VCode +"' and LMNo='"+ _LMNo +"'";
+            SQL = "Update "+ TableName +" Set Upload='2',ProjId = '"+ _ProjId +"',VCode = '"+ _VCode +"',ParaName = '"+ _ParaName +"',LMNo = '"+ _LMNo +"',WayPoint = '"+ _WayPnt +"',LMName = '"+ _LMName +"',latDeg = '"+ _latDeg +"',latMin = '"+ _latMin +"',latSec = '"+ _latSec +"',lonDeg = '"+ _lonDeg +"',lonMin = '"+ _lonMin +"',lonSec = '"+ _lonSec +"'  Where ProjId='"+ _ProjId +"' and VCode='"+ _VCode +"' and LMNo='"+ _LMNo +"'";
             C.Save(SQL);
             C.close();
         }
@@ -188,6 +201,7 @@ public class GPSLandmark_DataModel{
             d._VCode = cur.getString(cur.getColumnIndex("VCode"));
             d._ParaName = cur.getString(cur.getColumnIndex("ParaName"));
             d._LMNo = cur.getString(cur.getColumnIndex("LMNo"));
+            d._WayPnt = cur.getString(cur.getColumnIndex("WayPoint"));
             d._LMName = cur.getString(cur.getColumnIndex("LMName"));
             d._latDeg = cur.getString(cur.getColumnIndex("latDeg"));
             d._latMin = cur.getString(cur.getColumnIndex("latMin"));

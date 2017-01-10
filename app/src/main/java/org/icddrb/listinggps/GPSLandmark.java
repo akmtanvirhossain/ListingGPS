@@ -142,6 +142,10 @@ public class GPSLandmark extends Activity {
     EditText txtlonSec;
 
     TextView VlblVName;
+    LinearLayout secWayPnt;
+    View lineWayPnt;
+    TextView VlblWayPnt;
+    EditText txtWayPnt;
 
     String StartTime;
     Bundle IDbundle;
@@ -243,6 +247,11 @@ public class GPSLandmark extends Activity {
 
             //**************************added by sakib***************************
 
+            secWayPnt = (LinearLayout) findViewById(R.id.secWayPnt);
+            lineWayPnt = (View) findViewById(R.id.lineWayPnt);
+            VlblWayPnt = (TextView) findViewById(R.id.VlblWayPnt);
+            txtWayPnt = (EditText) findViewById(R.id.txtWayPnt);
+
             VlblVName= (TextView) findViewById(R.id.VlblVName);
             VlblVName.setText(IDbundle.getString("VName"));
 
@@ -343,6 +352,10 @@ public class GPSLandmark extends Activity {
                 Connection.MessageBox(GPSLandmark.this, "Required field: Second.");
                 txtlonSec.requestFocus();
                 return;
+            }else if(txtWayPnt.getText().toString().length()==0 & secWayPnt.isShown()){
+                Connection.MessageBox(GPSLandmark.this, "Required field: Way Point.");
+                txtWayPnt.requestFocus();
+                return;
             }
 
             String SQL = "";
@@ -353,6 +366,9 @@ public class GPSLandmark extends Activity {
             objSave.setVCode(txtVCode.getText().toString());
             objSave.setParaName(txtParaName.getText().toString());
             objSave.setLMNo(txtLMNo.getText().toString());
+
+            objSave.setWayPnt(txtWayPnt.getText().toString());
+
             objSave.setLMName(txtLMName.getText().toString());
             objSave.setlatDeg(txtlatDeg.getText().toString());
             objSave.setlatMin(txtlatMin.getText().toString());
@@ -404,6 +420,7 @@ public class GPSLandmark extends Activity {
                 txtlonDeg.setText(item.getlonDeg());
                 txtlonMin.setText(item.getlonMin());
                 txtlonSec.setText(item.getlonSec());
+                txtWayPnt.setText(item.getWayPnt());
             }
         } catch (Exception e) {
             Connection.MessageBox(GPSLandmark.this, e.getMessage());

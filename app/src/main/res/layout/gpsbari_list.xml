@@ -118,7 +118,7 @@
                 <ListView android:scrollbars="vertical"
                     android:id="@+id/lstData"
                     android:layout_width="match_parent"
-                    android:layout_height="250sp"
+                    android:layout_height="600sp"
                     android:divider="#000000"
                     android:dividerHeight="1px"
                     android:clickable="true">

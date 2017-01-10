@@ -115,7 +115,10 @@ public class GPSVDoctor extends Activity {
     LinearLayout secVDType;
     View lineVDType;
     TextView VlblVDType;
-    EditText txtVDType;
+
+
+    Spinner spnVDType;
+
     LinearLayout secPharName;
     View linePharName;
     TextView VlblPharName;
@@ -150,6 +153,23 @@ public class GPSVDoctor extends Activity {
     EditText txtlonSec;
 
     TextView VlblVName;
+
+    LinearLayout secHutBazar;
+    View lineHutBazar;
+    TextView VlblHutBazar;
+    EditText txtHutBazar;
+
+    LinearLayout secVDTypeOther;
+    View lineVDTypeOther;
+    TextView VlblVDTypeOther;
+    EditText txtVDTypeOther;
+
+    LinearLayout secWayPnt;
+    View lineWayPnt;
+    TextView VlblWayPnt;
+    EditText txtWayPnt;
+
+
 
     String StartTime;
     Bundle IDbundle;
@@ -224,7 +244,7 @@ public class GPSVDoctor extends Activity {
             secVDType = (LinearLayout) findViewById(R.id.secVDType);
             lineVDType = (View) findViewById(R.id.lineVDType);
             VlblVDType = (TextView) findViewById(R.id.VlblVDType);
-            txtVDType = (EditText) findViewById(R.id.txtVDType);
+
             secPharName = (LinearLayout) findViewById(R.id.secPharName);
             linePharName = (View) findViewById(R.id.linePharName);
             VlblPharName = (TextView) findViewById(R.id.VlblPharName);
@@ -261,6 +281,25 @@ public class GPSVDoctor extends Activity {
 
             //**************************added by sakib***************************
 
+            spnVDType= (Spinner) findViewById(R.id.spnVDType);
+
+            secVDTypeOther = (LinearLayout) findViewById(R.id.secVDTypeOther);
+            lineVDTypeOther = (View) findViewById(R.id.lineVDTypeOther);
+            VlblVDTypeOther = (TextView) findViewById(R.id.VlblVDTypeOther);
+            txtVDTypeOther = (EditText) findViewById(R.id.txtVDTypeOther);
+
+            secVDTypeOther.setVisibility(View.GONE);
+
+            secHutBazar = (LinearLayout) findViewById(R.id.secHutBazar);
+            lineHutBazar = (View) findViewById(R.id.lineHutBazar);
+            VlblHutBazar = (TextView) findViewById(R.id.VlblHutBazar);
+            txtHutBazar = (EditText) findViewById(R.id.txtHutBazar);
+
+            secWayPnt = (LinearLayout) findViewById(R.id.secWayPnt);
+            lineWayPnt = (View) findViewById(R.id.lineWayPnt);
+            VlblWayPnt = (TextView) findViewById(R.id.VlblWayPnt);
+            txtWayPnt = (EditText) findViewById(R.id.txtWayPnt);
+
             VlblVName= (TextView) findViewById(R.id.VlblVName);
             VlblVName.setText(IDbundle.getString("VName"));
 
@@ -272,6 +311,29 @@ public class GPSVDoctor extends Activity {
             if (!VCODE.equals("")) {
                 txtVCode.setText(VCODE);
             }
+
+            spnVDType.setAdapter( (C.getArrayAdapter("Select '' Union Select distinct VDTypeName from VillDocType")));
+
+            spnVDType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    if (spnVDType.getSelectedItem().toString().length() == 0) return;
+                    if (spnVDType.getSelectedItem().equals("Others"))
+                    {
+                        secVDTypeOther.setVisibility(View.VISIBLE);
+                        lineVDTypeOther.setVisibility(View.VISIBLE);
+                    }else
+                    {
+                        secVDTypeOther.setVisibility(View.GONE);
+                        lineVDTypeOther.setVisibility(View.GONE);
+                    }
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+
+                }
+            });
 
             //**************************added by sakib***************************
 
@@ -327,6 +389,10 @@ public class GPSVDoctor extends Activity {
                 Connection.MessageBox(GPSVDoctor.this, "Required field: Para Name.");
                 txtParaName.requestFocus();
                 return;
+            } else if (txtHutBazar.getText().toString().length() == 0 & secHutBazar.isShown()) {
+                Connection.MessageBox(GPSVDoctor.this, "Required field: Hut Bazar Name.");
+                txtHutBazar.requestFocus();
+                return;
             } else if (txtVDNo.getText().toString().length() == 0 & secVDNo.isShown()) {
                 Connection.MessageBox(GPSVDoctor.this, "Required field: Village Doctor No.");
                 txtVDNo.requestFocus();
@@ -335,9 +401,13 @@ public class GPSVDoctor extends Activity {
                 Connection.MessageBox(GPSVDoctor.this, "Required field: Village Doctor Name.");
                 txtVDName.requestFocus();
                 return;
-            } else if (txtVDType.getText().toString().length() == 0 & secVDType.isShown()) {
+            } else if (spnVDType.getSelectedItemPosition() == 0 & secVDType.isShown()) {
                 Connection.MessageBox(GPSVDoctor.this, "Required field: Type Of Village Doctor.");
-                txtVDType.requestFocus();
+                spnVDType.requestFocus();
+                return;
+            }else if (txtVDTypeOther.getText().toString().length() == 0 & secVDTypeOther.isShown()) {
+                Connection.MessageBox(GPSVDoctor.this, "Required field: Type Of Specify other doctor.");
+                txtVDTypeOther.requestFocus();
                 return;
             } else if (txtPharName.getText().toString().length() == 0 & secPharName.isShown()) {
                 Connection.MessageBox(GPSVDoctor.this, "Required field: Pharmacy Name.");
@@ -367,6 +437,10 @@ public class GPSVDoctor extends Activity {
                 Connection.MessageBox(GPSVDoctor.this, "Required field: Second.");
                 txtlonSec.requestFocus();
                 return;
+            }else if(txtWayPnt.getText().toString().length()==0 & secWayPnt.isShown()){
+                Connection.MessageBox(GPSVDoctor.this, "Required field: Way Point.");
+                txtWayPnt.requestFocus();
+                return;
             }
 
             String SQL = "";
@@ -376,9 +450,24 @@ public class GPSVDoctor extends Activity {
             objSave.setProjId(txtProjId.getText().toString());
             objSave.setVCode(txtVCode.getText().toString());
             objSave.setParaName(txtParaName.getText().toString());
+            objSave.setHutBazarName(txtHutBazar.getText().toString());
+
             objSave.setVDNo(txtVDNo.getText().toString());
+
+            objSave.setWayPnt(txtWayPnt.getText().toString());
+
             objSave.setVDName(txtVDName.getText().toString());
-            objSave.setVDType(txtVDType.getText().toString());
+
+            objSave.setVDType((spnVDType.getSelectedItemPosition() == 0 ? "" : Connection.SelectedSpinnerValue(spnVDType.getSelectedItem().toString(), "-")));
+
+
+            if (spnVDType.getSelectedItem().equals("Others") & secVDTypeOther.isShown()) {
+                objSave.setVDTypeOther(txtVDTypeOther.getText().toString());
+            }else
+            {
+                objSave.setVDTypeOther("");
+            }
+
             objSave.setPharName(txtPharName.getText().toString());
             objSave.setlatDeg(txtlatDeg.getText().toString());
             objSave.setlatMin(txtlatMin.getText().toString());
@@ -422,9 +511,23 @@ public class GPSVDoctor extends Activity {
                 txtProjId.setText(item.getProjId());
                 txtVCode.setText(item.getVCode());
                 txtParaName.setText(item.getParaName());
+                txtHutBazar.setText(item.getHutBazarName());
                 txtVDNo.setText(item.getVDNo());
                 txtVDName.setText(item.getVDName());
-                txtVDType.setText(item.getVDType());
+                //txtVDType.setText(item.getVDType());
+                spnVDType.setSelection(Global.SpinnerItemPositionAnyLength(spnVDType, item.getVDType()));
+
+                if (spnVDType.getSelectedItem().equals("Others"))
+                {
+                    secVDTypeOther.setVisibility(View.VISIBLE);
+                    lineVDTypeOther.setVisibility(View.VISIBLE);
+                    txtVDTypeOther.setText(item.getVDTypeOther());
+                }else
+                {
+                    secVDTypeOther.setVisibility(View.GONE);
+                    lineVDTypeOther.setVisibility(View.GONE);
+                }
+
                 txtPharName.setText(item.getPharName());
                 txtlatDeg.setText(item.getlatDeg());
                 txtlatMin.setText(item.getlatMin());
@@ -432,6 +535,7 @@ public class GPSVDoctor extends Activity {
                 txtlonDeg.setText(item.getlonDeg());
                 txtlonMin.setText(item.getlonMin());
                 txtlonSec.setText(item.getlonSec());
+                txtWayPnt.setText(item.getWayPnt());
             }
         } catch (Exception e) {
             Connection.MessageBox(GPSVDoctor.this, e.getMessage());
