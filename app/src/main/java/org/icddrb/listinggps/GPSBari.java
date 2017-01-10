@@ -398,23 +398,24 @@ public class GPSBari extends Activity {
                 Connection.MessageBox(GPSBari.this, "Required field: Second.");
                 txtlonSec.requestFocus();
                 return;
-            } else if (txtHCLoction.getText().toString().length() == 0 & secHCLoction.isShown()) {
-                Connection.MessageBox(GPSBari.this, "Required field: Health Care Location.");
-                txtHCLoction.requestFocus();
-                return;
-            }else if(txtHCLoction1.getText().toString().length()==0 & secHCLoction1.isShown()){
-                Connection.MessageBox(GPSBari.this, "Required field: Health Care Location1.");
-                txtHCLoction1.requestFocus();
-                return;
-            }else if(txtHCLoction2.getText().toString().length()==0 & secHCLoction2.isShown()){
-                Connection.MessageBox(GPSBari.this, "Required field: Health Care Location2.");
-                txtHCLoction2.requestFocus();
-                return;
             }else if(txtWayPnt.getText().toString().length()==0 & secWayPnt.isShown()){
                 Connection.MessageBox(GPSBari.this, "Required field: Way Point.");
                 txtWayPnt.requestFocus();
                 return;
             }
+//            else if (txtHCLoction.getText().toString().length() == 0 & secHCLoction.isShown()) {
+//                Connection.MessageBox(GPSBari.this, "Required field: Health Care Location.");
+//                txtHCLoction.requestFocus();
+//                return;
+//            }else if(txtHCLoction1.getText().toString().length()==0 & secHCLoction1.isShown()){
+//                Connection.MessageBox(GPSBari.this, "Required field: Health Care Location1.");
+//                txtHCLoction1.requestFocus();
+//                return;
+//            }else if(txtHCLoction2.getText().toString().length()==0 & secHCLoction2.isShown()){
+//                Connection.MessageBox(GPSBari.this, "Required field: Health Care Location2.");
+//                txtHCLoction2.requestFocus();
+//                return;
+//            }
 
             String SQL = "";
             RadioButton rb;

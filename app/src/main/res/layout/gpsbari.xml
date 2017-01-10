@@ -101,21 +101,21 @@
             <View android:id="@+id/linelonSec" android:layout_height="1dip" android:layout_width="fill_parent" android:background="#CCCCCC" />
             <LinearLayout android:id="@+id/secHCLoction" android:layout_width="fill_parent" android:layout_height="wrap_content" android:orientation="horizontal" style="@style/rowStyle0">
                 <TextView android:id="@+id/lblHCLoction" android:text="" android:layout_width="60sp" android:layout_height="wrap_content" android:textSize="20sp" android:visibility="gone" />
-                <TextView android:id="@+id/VlblHCLoction" android:text="Health Care Location" android:layout_width="220sp" android:layout_height="wrap_content" android:textSize="20sp" />
+                <TextView android:id="@+id/VlblHCLoction" android:text="Health Care Location 1." android:layout_width="220sp" android:layout_height="wrap_content" android:textSize="20sp" />
                 <EditText android:id="@+id/txtHCLoction" android:maxLength="100" android:layout_width="250sp" android:inputType="text" android:layout_height="wrap_content" style="@style/customEdit" android:layout_marginRight="10sp" android:textSize="20sp" />
             </LinearLayout>
             <View android:id="@+id/lineHCLoction" android:layout_height="1dip" android:layout_width="fill_parent" android:background="#CCCCCC" />
 
             <LinearLayout android:id="@+id/secHCLoction1" android:layout_width="fill_parent" android:layout_height="wrap_content" android:orientation="horizontal" style="@style/rowStyle0">
                 <TextView android:id="@+id/lblHCLoction1" android:text="" android:layout_width="60sp" android:layout_height="wrap_content" android:textSize="20sp" android:visibility="gone" />
-                <TextView android:id="@+id/VlblHCLoction1" android:text="Health Care Location1" android:layout_width="220sp" android:layout_height="wrap_content" android:textSize="20sp" />
+                <TextView android:id="@+id/VlblHCLoction1" android:text=" 2." android:paddingLeft="190sp" android:layout_width="220sp" android:layout_height="wrap_content" android:textSize="20sp" />
                 <EditText android:id="@+id/txtHCLoction1" android:maxLength="100" android:layout_width="250sp" android:inputType="text" android:layout_height="wrap_content" style="@style/customEdit" android:layout_marginRight="10sp" android:textSize="20sp" />
             </LinearLayout>
             <View android:id="@+id/lineHCLoction1" android:layout_height="1dip" android:layout_width="fill_parent" android:background="#CCCCCC" />
 
             <LinearLayout android:id="@+id/secHCLoction2" android:layout_width="fill_parent" android:layout_height="wrap_content" android:orientation="horizontal" style="@style/rowStyle0">
                 <TextView android:id="@+id/lblHCLoction2" android:text="" android:layout_width="60sp" android:layout_height="wrap_content" android:textSize="20sp" android:visibility="gone" />
-                <TextView android:id="@+id/VlblHCLoction2" android:text="Health Care Location2" android:layout_width="220sp" android:layout_height="wrap_content" android:textSize="20sp" />
+                <TextView android:id="@+id/VlblHCLoction2" android:text=" 3." android:paddingLeft="190sp" android:layout_width="220sp" android:layout_height="wrap_content" android:textSize="20sp" />
                 <EditText android:id="@+id/txtHCLoction2" android:maxLength="100" android:layout_width="250sp" android:inputType="text" android:layout_height="wrap_content" style="@style/customEdit" android:layout_marginRight="10sp" android:textSize="20sp" />
             </LinearLayout>
             <View android:id="@+id/lineHCLoction2" android:layout_height="1dip" android:layout_width="fill_parent" android:background="#CCCCCC" />
