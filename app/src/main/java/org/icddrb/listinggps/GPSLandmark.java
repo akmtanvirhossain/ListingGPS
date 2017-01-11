@@ -356,6 +356,14 @@ public class GPSLandmark extends Activity {
                 Connection.MessageBox(GPSLandmark.this, "Required field: Way Point.");
                 txtWayPnt.requestFocus();
                 return;
+            }else if(Integer.parseInt(txtlatMin.getText().toString())>=60 & secWayPnt.isShown()){
+                Connection.MessageBox(GPSLandmark.this, "Latitude : Minute should be less than 60.");
+                txtlatMin.requestFocus();
+                return;
+            }else if(Integer.parseInt(txtlonMin.getText().toString())>=60 & secWayPnt.isShown()){
+                Connection.MessageBox(GPSLandmark.this, "Longitude : Minute should be less than 60.");
+                txtlonMin.requestFocus();
+                return;
             }
 
             String SQL = "";

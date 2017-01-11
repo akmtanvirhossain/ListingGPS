@@ -402,7 +402,17 @@ public class GPSBari extends Activity {
                 Connection.MessageBox(GPSBari.this, "Required field: Way Point.");
                 txtWayPnt.requestFocus();
                 return;
+            }else if(Integer.parseInt(txtlatMin.getText().toString())>=60 & secWayPnt.isShown()){
+                Connection.MessageBox(GPSBari.this, "Latitude : Minute should be less than 60.");
+                txtlatMin.requestFocus();
+                return;
+            }else if(Integer.parseInt(txtlonMin.getText().toString())>=60 & secWayPnt.isShown()){
+                Connection.MessageBox(GPSBari.this, "Longitude : Minute should be less than 60.");
+                txtlonMin.requestFocus();
+                return;
             }
+
+
 //            else if (txtHCLoction.getText().toString().length() == 0 & secHCLoction.isShown()) {
 //                Connection.MessageBox(GPSBari.this, "Required field: Health Care Location.");
 //                txtHCLoction.requestFocus();

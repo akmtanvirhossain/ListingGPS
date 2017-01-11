@@ -439,6 +439,15 @@ public class GPSVDoctor extends Activity {
                 Connection.MessageBox(GPSVDoctor.this, "Required field: Way Point.");
                 txtWayPnt.requestFocus();
                 return;
+            }else if(Integer.parseInt(txtlatMin.getText().toString())>=60 & secWayPnt.isShown()){
+                Connection.MessageBox(GPSVDoctor.this, "Latitude : Minute should be less than 60.");
+                Connection.MessageBox(GPSVDoctor.this, "Latitude : Minute should be less than 60.");
+                txtlatMin.requestFocus();
+                return;
+            }else if(Integer.parseInt(txtlonMin.getText().toString())>=60 & secWayPnt.isShown()){
+                Connection.MessageBox(GPSVDoctor.this, "Longitude : Minute should be less than 60.");
+                txtlonMin.requestFocus();
+                return;
             }
 
             String SQL = "";
