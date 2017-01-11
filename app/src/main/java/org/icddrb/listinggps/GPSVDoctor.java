@@ -170,7 +170,6 @@ public class GPSVDoctor extends Activity {
     EditText txtWayPnt;
 
 
-
     String StartTime;
     Bundle IDbundle;
     static String PROJID = "";
@@ -194,7 +193,6 @@ public class GPSVDoctor extends Activity {
             if (VDNO.equals("")) {
                 VDNO = VDNoSerial();
             }
-
 
             //turnGPSOn();
 
