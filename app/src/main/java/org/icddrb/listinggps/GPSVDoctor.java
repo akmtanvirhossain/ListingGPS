@@ -355,7 +355,7 @@ public class GPSVDoctor extends Activity {
     }
 
     private String VDNoSerial() {
-        String SL = C.ReturnSingleValue("Select (ifnull(max(cast(VDNo as int)),0)+1)SL from GPSVDoctor"); //where ParticipantID='"+ ParticipantID +"'");
+        String SL = C.ReturnSingleValue("Select (ifnull(max(cast(VDNo as int)),0)+1)SL from GPSVDoctor where VCode='"+VCODE+"'"); //where ParticipantID='"+ ParticipantID +"'");
 
         int length = SL.length();
         String s = "";

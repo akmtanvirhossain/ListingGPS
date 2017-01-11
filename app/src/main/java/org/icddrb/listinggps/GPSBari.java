@@ -327,7 +327,7 @@ public class GPSBari extends Activity {
 
     private String BariNoSerial()
     {
-        String SL = C.ReturnSingleValue("Select (ifnull(max(cast(BariNo as int)),0)+1)SL from GPSBari"); //where ParticipantID='"+ ParticipantID +"'");
+        String SL = C.ReturnSingleValue("Select (ifnull(max(cast(BariNo as int)),0)+1)SL from GPSBari where VCode='"+VCODE+"'"); //where ParticipantID='"+ ParticipantID +"'");
 
         int length=SL.length();
         String s = "";

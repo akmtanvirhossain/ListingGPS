@@ -286,7 +286,7 @@ public class GPSLandmark extends Activity {
     }
 
     private String LMNoSerial() {
-        String SL = C.ReturnSingleValue("Select (ifnull(max(cast(LMNo as int)),0)+1)SL from GPSLandmark"); //where ParticipantID='"+ ParticipantID +"'");
+        String SL = C.ReturnSingleValue("Select (ifnull(max(cast(LMNo as int)),0)+1)SL from GPSLandmark where VCode='"+VCODE+"'");  //where ParticipantID='"+ ParticipantID +"'");
 
         int length = SL.length();
         String s = "";
