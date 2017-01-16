@@ -5,8 +5,7 @@
     android:background="#F3F3F3"
     android:isScrollContainer="true"
     android:orientation="vertical"
-    android:overScrollMode="always" android:paddingLeft="0sp"
-    android:paddingRight="0sp"
+    android:overScrollMode="always"
     android:scrollbarAlwaysDrawVerticalTrack="true"
     android:scrollbarStyle="outsideInset"
     android:scrollbars="vertical">
@@ -14,13 +13,13 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:gravity="center"
         android:layout_marginTop="20sp"
         android:background="#F3F3F3"
         android:visibility="visible">
 
         <ImageView
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:paddingLeft="10px"

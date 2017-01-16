@@ -33,7 +33,7 @@ public class MainMenu extends Activity {
             C = new Connection(this);
             g = Global.getInstance();
 
-            USERID = g.getUserId();
+            USERID = g.getDeviceNo();
 
             cmdDataSync = (Button) findViewById(R.id.cmdDataSync);
             cmdDataSync.setOnClickListener(new View.OnClickListener() {
@@ -58,19 +58,15 @@ public class MainMenu extends Activity {
                                 public void run() {
                                     try {
 
+                                        String r = C.ExecuteCommandOnServer("Insert into UploadMonitor(DeviceID)Values('"+ USERID +"')");
+
                                         List<String> tableList = new ArrayList<String>();
-                                        tableList.add("Screening");
-                                        tableList.add("idnHistory");
-                                        tableList.add("medRecord");
-                                        tableList.add("Admission");
-                                        tableList.add("Folup");
-                                        tableList.add("Medicine");
-                                        tableList.add("OthInvestig");
-
-                                        //Lab
-                                        tableList.add("SampleAnalysis");
-                                        tableList.add("LabResult");
-
+                                        tableList.add("GPSBari");
+                                        tableList.add("GPSLandmark");
+                                        tableList.add("GPSVDoctor");
+                                        tableList.add("GPSVDoctor");
+                                        tableList.add("Village");
+                                        tableList.add("VillDocType");
                                         C.DataSync_UploadDownload(tableList, USERID);
 
                                     } catch (Exception e) {

@@ -450,7 +450,7 @@ public class GPSBari extends Activity {
             objSave.setEnDt(Global.DateTimeNowYMDHMS());
             objSave.setStartTime(StartTime);
             objSave.setEndTime(g.CurrentTime24());
-            objSave.setUserId(g.getUserId());
+            objSave.setUserId(g.getDeviceNo());
             objSave.setEntryUser(g.getUserId());
 
             objSave.setHCLoction1(txtHCLoction1.getText().toString());

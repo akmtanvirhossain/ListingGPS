@@ -429,6 +429,7 @@ public class GPSBari_list extends Activity {
             dataAdapter = new SimpleAdapter(GPSBari_list.this, dataList, R.layout.gpsbari_list,new String[] {"rowsec"},
                     new int[] {R.id.secListRow});
             list.setAdapter(new DataListAdapter(this, dataAdapter));
+            Utility.setListViewHeightBasedOnChildren(list);
         }
         catch(Exception  e)
         {
