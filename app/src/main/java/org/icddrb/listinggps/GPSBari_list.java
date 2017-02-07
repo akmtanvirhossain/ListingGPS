@@ -113,7 +113,6 @@ public class GPSBari_list extends Activity {
             tvListHeadingPara= (TextView) findViewById(R.id.tvListHeadingPara);
 
 
-
             rdoLandmark= (RadioButton) findViewById(R.id.rdoLandmark);
             rdoDoctor= (RadioButton) findViewById(R.id.rdoDoctor);
             //**************************added by sakib***************************
